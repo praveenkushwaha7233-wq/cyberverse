@@ -7,7 +7,8 @@ app = Flask(__name__)
 app.secret_key = "secret123"
 
 # MongoDB
-app.config["MONGO_URI"] = "mongodb://localhost:27017/cyberverse"
+import os
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 mongo = PyMongo(app)
 
 # Login Manager
