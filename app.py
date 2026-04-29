@@ -36,9 +36,11 @@ def load_user(user_id):
 # Home
 @app.route('/')
 def home():
+    if mongo.db is None:
+        return "MongoDB not connected ❌"
+
     tools = mongo.db.tools.find()
     return render_template('index.html', tools=tools)
-
 # Register
 @app.route('/register', methods=['GET', 'POST'])
 def register():
