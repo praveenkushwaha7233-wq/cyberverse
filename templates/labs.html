@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cyber Labs</title>
+</head>
+<body style="background:black; color:white; font-family:Arial;">
+
+<h1>🧪 Cyber Security Labs (Safe Simulation)</h1>
+
+<h3>1. SQL Injection Demo</h3>
+<form method="POST">
+    Username: <input type="text" name="username">
+    <br><br>
+    Password: <input type="text" name="password">
+    <br><br>
+    <button type="submit">Login</button>
+</form>
+
+<p>{{ result }}</p>
+
+<hr>
+
+<h3>2. Password Strength Checker</h3>
+<form method="POST" action="/check_password">
+    Enter Password: <input type="text" name="pwd">
+    <button type="submit">Check</button>
+</form>
+
+<p>{{ strength }}</p>
+
+</body>
+</html>

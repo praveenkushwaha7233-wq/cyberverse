@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+</head>
+<body style="background:black; color:white; font-family:Arial;">
+
+<h1>👑 Admin Panel</h1>
+
+<h2>Add Tool</h2>
+<form method="POST">
+    Tool Name: <input type="text" name="name"><br><br>
+    Description: <input type="text" name="desc"><br><br>
+    <button type="submit">Add Tool</button>
+</form>
+
+<hr>
+
+<h2>All Tools</h2>
+
+{% for tool in tools %}
+    <p><b>{{ tool.name }}</b> - {{ tool.desc }}</p>
+{% endfor %}
+
+</body>
+</html>
