@@ -8,7 +8,10 @@ app.secret_key = "secret123"
 
 # MongoDB
 import os
-app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+from flask_pymongo import PyMongo
+
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+
 mongo = PyMongo(app)
 
 # Login Manager
