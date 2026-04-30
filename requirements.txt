@@ -1,4 +1,4 @@
-flask
+Flask
 flask-pymongo
 flask-login
-werkzeug
+gunicorn
