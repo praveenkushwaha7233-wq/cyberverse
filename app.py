@@ -2,17 +2,28 @@ from flask import Flask, render_template, request, redirect
 from flask_pymongo import PyMongo
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+import os
 
 app = Flask(__name__)
 app.secret_key = "secret123"
 
-# MongoDB
-import os
-from flask_pymongo import PyMongo
+# 🔥 MongoDB Connection (SAFE VERSION)
+mongo_uri = os.environ.get("MONGO_URI")
 
-app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+if not mongo_uri:
+    print("❌ MONGO_URI NOT FOUND")
+
+app.config["MONGO_URI"] = mongo_uri
 
 mongo = PyMongo(app)
+@app.route('/test-db')
+def test_db():
+    try:
+        mongo.db.test.insert_one({"msg": "working"})
+        return "✅ MongoDB Connected"
+    except Exception as e:
+        return f"❌ DB Error: {e}"
+
 
 # Login Manager
 login_manager = LoginManager()
@@ -37,10 +48,14 @@ def load_user(user_id):
 @app.route('/')
 def home():
     try:
-        tools = mongo.db.tools.find()
+        if mongo.db is None:
+            return "❌ MongoDB not connected"
+
+        tools = list(mongo.db.tools.find())
         return render_template('index.html', tools=tools)
+
     except Exception as e:
-        return f"Database Error: {e}"
+        return f"❌ Error: {e}"
 # Register
 @app.route('/register', methods=['GET', 'POST'])
 def register():
