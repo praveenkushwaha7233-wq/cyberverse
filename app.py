@@ -37,11 +37,10 @@ def load_user(user_id):
 @app.route('/')
 def home():
     try:
-        tools = mongo.db.tools.find() if mongo.db else []
+        tools = mongo.db.tools.find()
         return render_template('index.html', tools=tools)
     except Exception as e:
-        return f"Error: {e}"
-    
+        return f"Database Error: {e}"
 # Register
 @app.route('/register', methods=['GET', 'POST'])
 def register():
