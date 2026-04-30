@@ -6,6 +6,9 @@ import os
 
 app = Flask(__name__)
 app.secret_key = "secret123"
+@app.route('/')
+def home():
+    return render_template("index.html")
 
 # 🔥 MongoDB Connection (SAFE VERSION)
 mongo_uri = os.environ.get("MONGO_URI")
@@ -47,15 +50,7 @@ def load_user(user_id):
 # Home
 @app.route('/')
 def home():
-    try:
-        if mongo.db is None:
-            return "❌ MongoDB not connected"
-
-        tools = list(mongo.db.tools.find())
-        return render_template('index.html', tools=tools)
-
-    except Exception as e:
-        return f"❌ Error: {e}"
+    return "APP IS RUNNING"
 # Register
 @app.route('/register', methods=['GET', 'POST'])
 def register():
