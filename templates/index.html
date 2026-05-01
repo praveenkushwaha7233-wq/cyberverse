@@ -1,74 +1,187 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberVerse</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberVerse - Master the Art of Defense</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-    </style>
+<style>
+body { font-family: 'Inter', sans-serif; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+
+.card {
+  background:#1a1a1a;
+  border:1px solid #2d2d2d;
+  padding:24px;
+  border-radius:12px;
+  transition:0.3s;
+  position:relative;
+}
+.card:hover {
+  border-color:#00fff9;
+  box-shadow:0 0 25px #00fff933;
+}
+
+.btn {
+  position:absolute;
+  bottom:16px;
+  right:16px;
+  background:#00fff9;
+  color:black;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+}
+</style>
 </head>
 
 <body class="bg-[#0a0a0a] text-[#e0e0e0]">
 
 <!-- NAVBAR -->
-<nav class="fixed top-0 left-0 right-0 h-[70px] bg-[#1a1a1a] border-b border-[#2d2d2d] z-50">
-    <div class="max-w-[1200px] mx-auto px-6 h-full flex items-center justify-between">
-        <h1 class="text-xl font-mono text-[#00fff9]">CyberVerse</h1>
+<nav class="fixed top-0 left-0 right-0 h-[72px] bg-[#0d0d0d]/80 backdrop-blur border-b border-[#2d2d2d] z-50">
+<div class="max-w-[1440px] mx-auto px-8 h-full flex items-center justify-between">
 
-        <div class="space-x-6 font-mono text-sm">
-            <a href="/" class="text-[#00fff9]">Home</a>
-            <a href="/labs">Labs</a>
-            <a href="/login">Login</a>
-        </div>
-    </div>
+<div class="flex items-center gap-2">
+<svg class="w-8 h-8" fill="none" viewBox="0 0 32 32">
+<path d="M16 4L4 10V22L16 28L28 22V10L16 4Z" stroke="#00fff9" stroke-width="2"/>
+</svg>
+<span class="text-[24px] font-mono font-bold text-[#00fff9]">CyberVerse</span>
+</div>
+
+<div class="flex gap-8 font-mono text-sm">
+<span class="text-[#00fff9] border-b-2 border-[#00fff9] pb-1">Dashboard</span>
+<span class="text-gray-400 hover:text-white transition">Learning Paths</span>
+<span class="text-gray-400 hover:text-white transition">Toolbox</span>
+<span class="text-gray-400 hover:text-white transition">Community</span>
+</div>
+
+</div>
 </nav>
 
-<main class="pt-[80px] px-6">
+<main class="pt-[72px]">
 
 <!-- HERO -->
-<section class="max-w-[1000px] mx-auto text-center py-16">
-    <h1 class="text-4xl font-mono mb-4">
-        Master the Art of <span class="text-[#00fff9]">Cyber Security</span>
-    </h1>
+<section class="py-[100px] px-8 relative overflow-hidden">
 
-    <p class="text-[#8a8a8a] mb-6">
-        Practice real-world hacking labs and security tools safely.
-    </p>
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, #00fff9 1px, transparent 1px); background-size:20px;"></div>
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00fff9]/10 blur-[120px] rounded-full"></div>
 
-    <button onclick="registerUser()"
-        class="border border-[#00fff9] px-6 py-2 rounded text-[#00fff9] hover:bg-[#00fff9] hover:text-black">
-        🚀 Start Learning
-    </button>
+<div class="max-w-[1440px] mx-auto relative">
+
+<h1 class="text-5xl font-bold font-mono mb-6">
+Master the Art of <span class="text-[#00fff9]">Defense</span>
+</h1>
+
+<p class="text-lg text-gray-400 mb-8 max-w-xl">
+Build real-world cybersecurity skills through interactive labs and challenges.
+</p>
+
+<div class="flex gap-4">
+<button class="bg-[#00fff9] hover:bg-[#00e6e0] transition text-black px-8 py-4 rounded font-mono">
+Start Learning
+</button>
+
+<button class="border border-[#00fff9] hover:bg-[#00fff9] hover:text-black transition px-8 py-4 rounded font-mono text-[#00fff9]">
+Explore Tools
+</button>
+</div>
+
+<!-- STATS -->
+<div class="mt-12 grid grid-cols-3 gap-6 max-w-[900px]">
+
+<div class="card">
+<div class="text-3xl text-[#00fff9] font-mono">24</div>
+<div class="text-sm text-gray-400">Learning Paths</div>
+</div>
+
+<div class="card">
+<div class="text-3xl text-[#00fff9] font-mono">156</div>
+<div class="text-sm text-gray-400">Security Tools</div>
+</div>
+
+<div class="card">
+<div class="text-3xl text-[#00fff9] font-mono">8.5K</div>
+<div class="text-sm text-gray-400">Active Defenders</div>
+</div>
+
+</div>
+
+</div>
 </section>
 
-<!-- TOOLS SECTION -->
-<section class="max-w-[1000px] mx-auto mt-10">
-    <h2 class="text-2xl font-mono text-[#00fff9] mb-6">🛠 Available Tools</h2>
+<!-- LEARNING -->
+<section class="py-[100px] px-8">
+<div class="max-w-[1440px] mx-auto">
 
-    {% if tools %}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {% for tool in tools %}
-                <div class="bg-[#1a1a1a] border border-[#2d2d2d] p-4 rounded">
-                    <h3 class="text-[#00fff9] font-mono">{{ tool.name }}</h3>
-                    <p class="text-[#8a8a8a] text-sm">{{ tool.desc }}</p>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p class="text-[#8a8a8a]">No tools added yet.</p>
-    {% endif %}
+<h2 class="text-3xl font-bold font-mono mb-10">Your Learning Paths</h2>
+
+<div class="grid md:grid-cols-3 gap-6">
+
+<div class="card border-[#00fff9]">
+<h3 class="text-xl font-mono mb-2">Network Security</h3>
+<p class="text-sm text-gray-400 mb-4">Packet analysis & firewalls</p>
+
+<div class="h-2 bg-[#2d2d2d] rounded">
+<div class="h-full bg-[#00fff9] rounded transition-all duration-700" style="width:68%"></div>
+</div>
+</div>
+
+<div class="card">
+<h3 class="text-xl font-mono mb-2">Web Security</h3>
+<p class="text-sm text-gray-400">SQLi, XSS, OWASP</p>
+</div>
+
+<div class="card">
+<h3 class="text-xl font-mono mb-2">Forensics</h3>
+<p class="text-sm text-gray-400">Incident response</p>
+</div>
+
+</div>
+</div>
 </section>
+
+<!-- TOOLBOX -->
+<section class="py-[100px] px-8">
+<div class="max-w-[1440px] mx-auto">
+
+<h2 class="text-3xl font-bold font-mono mb-10">Security Toolbox</h2>
+
+<div class="grid md:grid-cols-4 gap-6">
+
+<div class="card">
+<h3 class="font-mono mb-2">Port Scanner</h3>
+<button class="btn">Launch</button>
+</div>
+
+<div class="card">
+<h3 class="font-mono mb-2">Hash Cracker</h3>
+<button class="btn">Launch</button>
+</div>
+
+<div class="card">
+<h3 class="font-mono mb-2">Packet Analyzer</h3>
+<button class="btn">Launch</button>
+</div>
+
+<div class="card">
+<h3 class="font-mono mb-2">Vulnerability Scanner</h3>
+<button class="btn">Launch</button>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-10 text-center text-sm text-gray-500 border-t border-[#2d2d2d]">
+© 2024 CyberVerse
+</footer>
 
 </main>
-
-<script src="/static/main.js"></script>
 
 </body>
 </html>
