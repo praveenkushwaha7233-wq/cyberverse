@@ -1,851 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   CyberVerse - Master the Art of Defense
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-  <style>
-   body {
-            font-family: 'Inter', sans-serif;
-        }
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-  </style>
- </head>
- <body class="bg-[#0a0a0a] text-[#e0e0e0]">
-  <!--- START: Navigation --->
-    <nav class="fixed top-0 left-0 right-0 h-[72px] bg-[#1a1a1a] border-b border-[#2d2d2d] z-50">
-   <div class="max-w-[1440px] mx-auto px-8 h-full flex items-center justify-between">
-    <div class="flex items-center gap-2">
-     <svg class="w-8 h-8" fill="none" viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 4L4 10V22L16 28L28 22V10L16 4Z" stroke="#00fff9" stroke-linejoin="round" stroke-width="2">
-      </path>
-      <path d="M16 16L22 12.5M16 16L10 12.5M16 16V22" stroke="#00fff9" stroke-width="2">
-      </path>
-     </svg>
-     <span class="text-[24px] font-mono font-bold text-[#00fff9]">
-      CyberVerse
-     </span>
-    </div>
-    <div class="flex items-center gap-8 font-mono text-[14px]">
-     <div class="relative">
-      <span class="text-[#00fff9]">
-       Dashboard
-      </span>
-      <div class="absolute bottom-[-24px] left-0 right-0 h-[2px] bg-[#00fff9]">
-      </div>
-     </div>
-     <span class="text-[#8a8a8a]">
-      Learning Paths
-     </span>
-     <span class="text-[#8a8a8a]">
-      Toolbox
-     </span>
-     <a href="/labs">
-    <button>Open Cyber Labs</button>
-</a>
-     <span class="text-[#8a8a8a]">
-      Community
-     </span>
-     <div class="w-10 h-10 rounded-full bg-[#2d2d2d] border border-[#00fff9] flex items-center justify-center ml-4">
-      <svg class="w-5 h-5" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-       <circle cx="12" cy="8" r="4" stroke="#00fff9" stroke-width="2">
-       </circle>
-       <path d="M6 21C6 17.686 8.686 15 12 15C15.314 15 18 17.686 18 21" stroke="#00fff9" stroke-width="2">
-       </path>
-      </svg>
-     </div>
-    </div>
-   </div>
-  </nav>
-  <!--- END --->
-  <main class="pt-[72px]">
-   <!--- START: Hero Section --->
-      <section class="py-[80px] px-8 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, #00fff9 1px, transparent 1px); background-size: 20px 20px;">
-    </div>
-    <div class="max-w-[1440px] mx-auto relative">
-     <div class="max-w-[800px]">
-      <h1 class="text-[48px] font-bold font-mono mb-6 leading-tight">
-       Master the Art of
-       <span class="text-[#00fff9]">
-        Defense
-       </span>
-      </h1>
-      <p class="text-[20px] text-[#8a8a8a] mb-8 leading-relaxed">
-       Build real-world cybersecurity skills through interactive challenges, hands-on labs, and cutting-edge security tools. Join a community of defenders protecting the digital frontier.
-      </p>
-      <div class="flex gap-4">
-       <button class="border border-[#00fff9] text-[#00fff9] font-mono font-semibold px-8 py-4 rounded text-[16px]"onclick="registerUser()">Start Learning</button>
-       <button class="border border-[#00fff9] text-[#00fff9] font-mono font-semibold px-8 py-4 rounded text-[16px]">
-        Explore Tools
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberVerse</title>
 
-       </button>
-       <h2>🛠 Cyber Tools</h2>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-{% for tool in tools %}
-    <div>
-        <h3>{{ tool.name }}</h3>
-        <p>{{ tool.desc }}</p>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+
+<body class="bg-[#0a0a0a] text-[#e0e0e0]">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="fixed top-0 w-full bg-[#1a1a1a] border-b border-[#2d2d2d] z-50">
+    <div class="max-w-7xl mx-auto px-6 h-[70px] flex justify-between items-center">
+
+        <div class="text-[#00fff9] font-mono text-xl font-bold">
+            CyberVerse
+        </div>
+
+        <div class="flex gap-6 text-sm font-mono">
+            <a href="/" class="text-[#00fff9]">Home</a>
+            <a href="/labs" class="text-[#8a8a8a] hover:text-white">Labs</a>
+            <a href="/login" class="text-[#8a8a8a] hover:text-white">Login</a>
+            <a href="/register" class="text-[#8a8a8a] hover:text-white">Register</a>
+            <a href="/admin" class="text-[#8a8a8a] hover:text-white">Admin</a>
+        </div>
+
     </div>
-{% endfor %}
-      </div>
-     </div>
-     <div class="mt-12 grid grid-cols-3 gap-6 max-w-[900px]">
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <div class="text-[32px] font-bold font-mono text-[#00fff9] mb-2">
-        24
-       </div>
-       <div class="text-[14px] text-[#8a8a8a]">
-        Learning Paths
-       </div>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <div class="text-[32px] font-bold font-mono text-[#00fff9] mb-2">
-        156
-       </div>
-       <div class="text-[14px] text-[#8a8a8a]">
-        Security Tools
-       </div>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <div class="text-[32px] font-bold font-mono text-[#00fff9] mb-2">
-        8.5K
-       </div>
-       <div class="text-[14px] text-[#8a8a8a]">
-        Active Defenders
-       </div>
-      </div>
-     </div>
+</nav>
+
+<!-- ================= MAIN ================= -->
+<main class="pt-[80px] px-6">
+
+<!-- ================= HERO ================= -->
+<section class="py-16">
+    <div class="max-w-4xl">
+        <h1 class="text-4xl font-bold font-mono mb-4">
+            Master the Art of <span class="text-[#00fff9]">Cyber Defense</span>
+        </h1>
+
+        <p class="text-[#8a8a8a] mb-6">
+            Learn cybersecurity with real labs, tools, and hands-on practice.
+        </p>
+
+        <div class="flex gap-4">
+            <a href="/register">
+                <button class="border border-[#00fff9] text-[#00fff9] px-6 py-3 rounded">
+                    Start Learning
+                </button>
+            </a>
+
+            <a href="/labs">
+                <button class="border border-[#00fff9] text-[#00fff9] px-6 py-3 rounded">
+                    Open Labs
+                </button>
+            </a>
+        </div>
     </div>
-   </section>
-   <!--- END --->
-   <!--- START: Learning Paths Overview --->
-      <section class="py-[80px] px-8 bg-[#0a0a0a]">
-    <div class="max-w-[1440px] mx-auto">
-     <div class="flex items-center justify-between mb-12">
-      <div>
-       <h2 class="text-[32px] font-semibold font-mono mb-2">
-        Your Learning Paths
-       </h2>
-       <p class="text-[16px] text-[#8a8a8a]">
-        Continue your journey or start a new challenge
-       </p>
-      </div>
-      <button class="text-[#00fff9] font-mono text-[14px]">
-       View All →
-      </button>
-     </div>
-     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="bg-[#1a1a1a] border border-[#00fff9] rounded-lg p-6 relative">
-       <div class="absolute top-6 right-6">
-        <span class="bg-[#00ff41] text-[#0a0a0a] text-[12px] font-semibold px-3 py-1 rounded-full">
-         IN PROGRESS
-        </span>
-       </div>
-       <div class="mb-4">
-        <svg class="w-12 h-12 text-[#00fff9]" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-         <path d="M24 8L8 16V32L24 40L40 32V16L24 8Z" stroke="currentColor" stroke-linejoin="round" stroke-width="2">
-         </path>
-         <circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="2">
-         </circle>
-        </svg>
-       </div>
-       <h3 class="text-[24px] font-medium font-mono mb-2">
-        Network Security Fundamentals
-       </h3>
-       <p class="text-[14px] text-[#8a8a8a] mb-6">
-        Master packet analysis, firewalls, and intrusion detection systems
-       </p>
-       <div class="mb-2">
-        <div class="flex justify-between text-[12px] mb-2">
-         <span class="text-[#8a8a8a]">
-          Progress
-         </span>
-         <span class="text-[#00fff9] font-mono">
-          68%
-         </span>
+</section>
+
+<!-- ================= TOOLS SECTION ================= -->
+<section class="py-12">
+    <h2 class="text-2xl font-mono text-[#00fff9] mb-6">🛠 Cyber Tools</h2>
+
+    {% if tools %}
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for tool in tools %}
+            <div class="bg-[#1a1a1a] border border-[#2d2d2d] p-5 rounded-lg">
+                <h3 class="text-lg font-mono text-[#00fff9] mb-2">
+                    {{ tool.name }}
+                </h3>
+                <p class="text-[#8a8a8a] text-sm">
+                    {{ tool.desc }}
+                </p>
+            </div>
+            {% endfor %}
         </div>
-        <div class="h-2 bg-[#2d2d2d] rounded-full overflow-hidden">
-         <div class="h-full bg-[#00fff9] rounded-full" style="width: 68%">
-         </div>
+    {% else %}
+        <p class="text-[#8a8a8a]">No tools added yet.</p>
+    {% endif %}
+</section>
+
+<!-- ================= FEATURES ================= -->
+<section class="py-12">
+    <h2 class="text-2xl font-mono mb-6">🚀 Features</h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="bg-[#1a1a1a] p-6 rounded border border-[#2d2d2d]">
+            <h3 class="text-[#00fff9] font-mono mb-2">Cyber Labs</h3>
+            <p class="text-[#8a8a8a] text-sm">Practice SQL Injection, XSS and more safely.</p>
         </div>
-       </div>
-       <div class="flex items-center gap-4 mt-4 text-[12px] text-[#8a8a8a]">
-        <span>
-         12 of 18 modules
-        </span>
-        <span>
-         •
-        </span>
-        <span>
-         6h remaining
-        </span>
-       </div>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <div class="mb-4">
-        <svg class="w-12 h-12 text-[#8a8a8a]" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-         <rect height="28" rx="2" stroke="currentColor" stroke-width="2" width="28" x="10" y="10">
-         </rect>
-         <path d="M16 24L22 30L32 18" stroke="currentColor" stroke-width="2">
-         </path>
-        </svg>
-       </div>
-       <h3 class="text-[24px] font-medium font-mono mb-2">
-        Web Application Security
-       </h3>
-       <p class="text-[14px] text-[#8a8a8a] mb-6">
-        Learn OWASP Top 10, SQL injection, XSS, and secure coding practices
-       </p>
-       <div class="mb-2">
-        <div class="flex justify-between text-[12px] mb-2">
-         <span class="text-[#8a8a8a]">
-          Progress
-         </span>
-         <span class="text-[#00fff9] font-mono">
-          0%
-         </span>
+
+        <div class="bg-[#1a1a1a] p-6 rounded border border-[#2d2d2d]">
+            <h3 class="text-[#00fff9] font-mono mb-2">Admin Panel</h3>
+            <p class="text-[#8a8a8a] text-sm">Add tools dynamically using admin dashboard.</p>
         </div>
-        <div class="h-2 bg-[#2d2d2d] rounded-full overflow-hidden">
-         <div class="h-full bg-[#00fff9] rounded-full" style="width: 0%">
-         </div>
+
+        <div class="bg-[#1a1a1a] p-6 rounded border border-[#2d2d2d]">
+            <h3 class="text-[#00fff9] font-mono mb-2">Authentication</h3>
+            <p class="text-[#8a8a8a] text-sm">Secure login & user system with roles.</p>
         </div>
-       </div>
-       <div class="flex items-center gap-4 mt-4 text-[12px] text-[#8a8a8a]">
-        <span>
-         0 of 22 modules
-        </span>
-        <span>
-         •
-        </span>
-        <span>
-         14h total
-        </span>
-       </div>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <div class="mb-4">
-        <svg class="w-12 h-12 text-[#8a8a8a]" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-         <path d="M24 4L24 24L38 32" stroke="currentColor" stroke-width="2">
-         </path>
-         <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2">
-         </circle>
-        </svg>
-       </div>
-       <h3 class="text-[24px] font-medium font-mono mb-2">
-        Incident Response &amp; Forensics
-       </h3>
-       <p class="text-[14px] text-[#8a8a8a] mb-6">
-        Investigate security incidents, analyze malware, and preserve evidence
-       </p>
-       <div class="mb-2">
-        <div class="flex justify-between text-[12px] mb-2">
-         <span class="text-[#8a8a8a]">
-          Progress
-         </span>
-         <span class="text-[#00fff9] font-mono">
-          0%
-         </span>
-        </div>
-        <div class="h-2 bg-[#2d2d2d] rounded-full overflow-hidden">
-         <div class="h-full bg-[#00fff9] rounded-full" style="width: 0%">
-         </div>
-        </div>
-       </div>
-       <div class="flex items-center gap-4 mt-4 text-[12px] text-[#8a8a8a]">
-        <span>
-         0 of 16 modules
-        </span>
-        <span>
-         •
-        </span>
-        <span>
-         10h total
-        </span>
-       </div>
-      </div>
-     </div>
+
     </div>
-   </section>
-   <!--- END --->
-   <!--- START: Featured Security Tools --->
-      <section class="py-[80px] px-8">
-    <div class="max-w-[1440px] mx-auto">
-     <div class="flex items-center justify-between mb-12">
-      <div>
-       <h2 class="text-[32px] font-semibold font-mono mb-2">
-        Security Toolbox
-       </h2>
-       <p class="text-[16px] text-[#8a8a8a]">
-        Quick access to essential security tools and utilities
-       </p>
-      </div>
-      <button class="text-[#00fff9] font-mono text-[14px]">
-       Browse All Tools →
-      </button>
-     </div>
-     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6 relative">
-       <div class="mb-4">
-        <svg class="w-12 h-12 text-[#00fff9]" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-         <rect height="24" rx="2" stroke="currentColor" stroke-width="2" width="32" x="8" y="14">
-         </rect>
-         <path d="M16 22L20 26L32 14" stroke="currentColor" stroke-width="2">
-         </path>
-        </svg>
-       </div>
-       <h3 class="text-[18px] font-medium font-mono mb-2">
-        Port Scanner
-       </h3>
-       <p class="text-[14px] text-[#8a8a8a] mb-4">
-        Scan networks for open ports and running services
-       </p>
-       <button class="absolute bottom-6 right-6 bg-[#00fff9] text-[#0a0a0a] text-[12px] font-semibold px-4 py-2 rounded-full">
-        Launch
-       </button>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6 relative">
-       <div class="mb-4">
-        <svg class="w-12 h-12 text-[#00fff9]" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-         <circle cx="24" cy="24" r="3" stroke="currentColor" stroke-width="2">
-         </circle>
-         <path d="M24 8V14M24 34V40M40 24H34M14 24H8M35 13L31 17M17 31L13 35M35 35L31 31M17 17L13 13" stroke="currentColor" stroke-width="2">
-         </path>
-        </svg>
-       </div>
-       <h3 class="text-[18px] font-medium font-mono mb-2">
-        Hash Cracker
-       </h3>
-       <p class="text-[14px] text-[#8a8a8a] mb-4">
-        Decrypt password hashes using rainbow tables
-       </p>
-       <button class="absolute bottom-6 right-6 bg-[#00fff9] text-[#0a0a0a] text-[12px] font-semibold px-4 py-2 rounded-full">
-        Launch
-       </button>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6 relative">
-       <div class="mb-4">
-        <svg class="w-12 h-12 text-[#00fff9]" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-         <path d="M8 12H40M8 24H40M8 36H40" stroke="currentColor" stroke-width="2">
-         </path>
-         <circle cx="14" cy="12" fill="currentColor" r="2">
-         </circle>
-         <circle cx="14" cy="24" fill="currentColor" r="2">
-         </circle>
-         <circle cx="14" cy="36" fill="currentColor" r="2">
-         </circle>
-        </svg>
-       </div>
-       <h3 class="text-[18px] font-medium font-mono mb-2">
-        Packet Analyzer
-       </h3>
-       <p class="text-[14px] text-[#8a8a8a] mb-4">
-        Inspect and analyze network traffic in real-time
-       </p>
-       <button class="absolute bottom-6 right-6 bg-[#00fff9] text-[#0a0a0a] text-[12px] font-semibold px-4 py-2 rounded-full">
-        Launch
-       </button>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6 relative">
-       <div class="mb-4">
-        <svg class="w-12 h-12 text-[#00fff9]" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-         <path d="M24 8L8 16L12 32L24 40L36 32L40 16L24 8Z" stroke="currentColor" stroke-width="2">
-         </path>
-         <path d="M24 24V32M20 20L24 24L28 20" stroke="currentColor" stroke-width="2">
-         </path>
-        </svg>
-       </div>
-       <h3 class="text-[18px] font-medium font-mono mb-2">
-        Vulnerability Scanner
-       </h3>
-       <p class="text-[14px] text-[#8a8a8a] mb-4">
-        Identify security weaknesses in systems
-       </p>
-       <button class="absolute bottom-6 right-6 bg-[#00fff9] text-[#0a0a0a] text-[12px] font-semibold px-4 py-2 rounded-full">
-        Launch
-       </button>
-      </div>
-     </div>
-    </div>
-   </section>
-   <!--- END --->
-   <!--- START: Community Highlights --->
-      <section class="py-[80px] px-8 bg-[#0a0a0a]">
-    <div class="max-w-[1440px] mx-auto">
-     <div class="flex items-center justify-between mb-12">
-      <div>
-       <h2 class="text-[32px] font-semibold font-mono mb-2">
-        Community Highlights
-       </h2>
-       <p class="text-[16px] text-[#8a8a8a]">
-        Recent contributions and achievements from the community
-       </p>
-      </div>
-      <button class="text-[#00fff9] font-mono text-[14px]">
-       View All Activity →
-      </button>
-     </div>
-     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <div class="flex items-start gap-4 mb-4">
-        <div class="w-10 h-10 rounded-full bg-[#00fff9] flex items-center justify-center text-[#0a0a0a] font-mono font-bold">
-         SA
-        </div>
-        <div class="flex-1">
-         <div class="flex items-center gap-2 mb-1">
-          <span class="font-semibold">
-           Sarah Anderson
-          </span>
-          <span class="text-[12px] text-[#8a8a8a]">
-           2 hours ago
-          </span>
-         </div>
-         <p class="text-[14px] text-[#8a8a8a] mb-3">
-          Completed
-          <span class="text-[#00fff9]">
-           Advanced Cryptography
-          </span>
-          path
-         </p>
-         <div class="flex items-center gap-2">
-          <span class="bg-[#00ff41] bg-opacity-20 text-[#00ff41] text-[12px] font-semibold px-3 py-1 rounded-full">
-           Achievement Unlocked
-          </span>
-          <span class="text-[#00ff41] text-[14px]">
-           +500 XP
-          </span>
-         </div>
-        </div>
-       </div>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <div class="flex items-start gap-4 mb-4">
-        <div class="w-10 h-10 rounded-full bg-[#00ff41] flex items-center justify-center text-[#0a0a0a] font-mono font-bold">
-         MK
-        </div>
-        <div class="flex-1">
-         <div class="flex items-center gap-2 mb-1">
-          <span class="font-semibold">
-           Marcus Kim
-          </span>
-          <span class="text-[12px] text-[#8a8a8a]">
-           5 hours ago
-          </span>
-         </div>
-         <p class="text-[14px] text-[#8a8a8a] mb-3">
-          Contributed new tool:
-          <span class="text-[#00fff9]">
-           DNS Enumeration Script
-          </span>
-         </p>
-         <div class="flex items-center gap-3">
-          <svg class="w-5 h-5 text-[#8a8a8a]" fill="currentColor" viewbox="0 0 20 20">
-           <path d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.137 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z">
-           </path>
-          </svg>
-          <span class="text-[14px] text-[#8a8a8a]">
-           24 stars
-          </span>
-         </div>
-        </div>
-       </div>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <div class="flex items-start gap-4 mb-4">
-        <div class="w-10 h-10 rounded-full bg-[#ff0055] flex items-center justify-center text-[#e0e0e0] font-mono font-bold">
-         JR
-        </div>
-        <div class="flex-1">
-         <div class="flex items-center gap-2 mb-1">
-          <span class="font-semibold">
-           Jamie Rodriguez
-          </span>
-          <span class="text-[12px] text-[#8a8a8a]">
-           8 hours ago
-          </span>
-         </div>
-         <p class="text-[14px] text-[#8a8a8a] mb-3">
-          Solved CTF challenge:
-          <span class="text-[#00fff9]">
-           SQL Injection Master
-          </span>
-         </p>
-         <div class="flex items-center gap-2">
-          <span class="text-[#ffd700] text-[14px]">
-           🏆 Top 10 Global
-          </span>
-         </div>
-        </div>
-       </div>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <div class="flex items-start gap-4 mb-4">
-        <div class="w-10 h-10 rounded-full bg-[#8a8a8a] flex items-center justify-center text-[#0a0a0a] font-mono font-bold">
-         DP
-        </div>
-        <div class="flex-1">
-         <div class="flex items-center gap-2 mb-1">
-          <span class="font-semibold">
-           David Park
-          </span>
-          <span class="text-[12px] text-[#8a8a8a]">
-           1 day ago
-          </span>
-         </div>
-         <p class="text-[14px] text-[#8a8a8a] mb-3">
-          Published writeup:
-          <span class="text-[#00fff9]">
-           Breaking WPA2 Handshakes
-          </span>
-         </p>
-         <div class="flex items-center gap-3 text-[14px] text-[#8a8a8a]">
-          <span>
-           156 views
-          </span>
-          <span>
-           •
-          </span>
-          <span>
-           23 likes
-          </span>
-         </div>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
-   <!--- END --->
-   <!--- START: Quick Stats Dashboard --->
-      <section class="py-[80px] px-8">
-    <div class="max-w-[1440px] mx-auto">
-     <h2 class="text-[32px] font-semibold font-mono mb-12">
-      Your Progress
-     </h2>
-     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <div class="flex items-center justify-between mb-4">
-        <span class="text-[14px] text-[#8a8a8a]">
-         Total XP
-        </span>
-        <svg class="w-6 h-6 text-[#00fff9]" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-         <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2">
-         </path>
-        </svg>
-       </div>
-       <div class="text-[32px] font-bold font-mono text-[#00fff9]">
-        12,450
-       </div>
-       <div class="text-[12px] text-[#8a8a8a] mt-2">
-        Level 18 • 550 XP to next level
-       </div>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <div class="flex items-center justify-between mb-4">
-        <span class="text-[14px] text-[#8a8a8a]">
-         Challenges Completed
-        </span>
-        <svg class="w-6 h-6 text-[#00ff41]" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-         <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2">
-         </circle>
-         <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2">
-         </path>
-        </svg>
-       </div>
-       <div class="text-[32px] font-bold font-mono text-[#00ff41]">
-        47
-       </div>
-       <div class="text-[12px] text-[#8a8a8a] mt-2">
-        83% completion rate
-       </div>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <div class="flex items-center justify-between mb-4">
-        <span class="text-[14px] text-[#8a8a8a]">
-         Learning Streak
-        </span>
-        <svg class="w-6 h-6 text-[#ffd700]" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-         <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2">
-         </path>
-        </svg>
-       </div>
-       <div class="text-[32px] font-bold font-mono text-[#ffd700]">
-        12
-       </div>
-       <div class="text-[12px] text-[#8a8a8a] mt-2">
-        days consecutive
-       </div>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <div class="flex items-center justify-between mb-4">
-        <span class="text-[14px] text-[#8a8a8a]">
-         Global Rank
-        </span>
-        <svg class="w-6 h-6 text-[#ff0055]" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-         <path d="M12 2L14.5 9H22L16 14L18 21L12 17L6 21L8 14L2 9H9.5L12 2Z" stroke="currentColor" stroke-width="2">
-         </path>
-        </svg>
-       </div>
-       <div class="text-[32px] font-bold font-mono text-[#ff0055]">
-        #342
-       </div>
-       <div class="text-[12px] text-[#8a8a8a] mt-2">
-        Top 5% of users
-       </div>
-      </div>
-     </div>
-     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <h3 class="text-[20px] font-medium font-mono mb-6">
-        Recent Achievements
-       </h3>
-       <div class="space-y-4">
-        <div class="flex items-center gap-4">
-         <div class="w-12 h-12 rounded-lg bg-[#00ff41] bg-opacity-20 flex items-center justify-center">
-          <svg class="w-6 h-6 text-[#00ff41]" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-           <path d="M9 12L11 14L15 10M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2">
-           </path>
-          </svg>
-         </div>
-         <div class="flex-1">
-          <div class="font-semibold mb-1">
-           Network Ninja
-          </div>
-          <div class="text-[12px] text-[#8a8a8a]">
-           Complete 10 network security challenges
-          </div>
-         </div>
-         <div class="text-[12px] text-[#8a8a8a]">
-          2d ago
-         </div>
-        </div>
-        <div class="flex items-center gap-4">
-         <div class="w-12 h-12 rounded-lg bg-[#00fff9] bg-opacity-20 flex items-center justify-center">
-          <svg class="w-6 h-6 text-[#00fff9]" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-           <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2">
-           </path>
-          </svg>
-         </div>
-         <div class="flex-1">
-          <div class="font-semibold mb-1">
-           Code Breaker
-          </div>
-          <div class="text-[12px] text-[#8a8a8a]">
-           Crack 25 password hashes
-          </div>
-         </div>
-         <div class="text-[12px] text-[#8a8a8a]">
-          5d ago
-         </div>
-        </div>
-        <div class="flex items-center gap-4">
-         <div class="w-12 h-12 rounded-lg bg-[#ffd700] bg-opacity-20 flex items-center justify-center">
-          <svg class="w-6 h-6 text-[#ffd700]" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-           <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2">
-           </path>
-          </svg>
-         </div>
-         <div class="flex-1">
-          <div class="font-semibold mb-1">
-           Week Warrior
-          </div>
-          <div class="text-[12px] text-[#8a8a8a]">
-           Maintain a 7-day learning streak
-          </div>
-         </div>
-         <div class="text-[12px] text-[#8a8a8a]">
-          1w ago
-         </div>
-        </div>
-       </div>
-      </div>
-      <div class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-lg p-6">
-       <h3 class="text-[20px] font-medium font-mono mb-6">
-        Skill Breakdown
-       </h3>
-       <div class="space-y-4">
-        <div>
-         <div class="flex justify-between mb-2">
-          <span class="text-[14px]">
-           Network Security
-          </span>
-          <span class="text-[14px] font-mono text-[#00fff9]">
-           85%
-          </span>
-         </div>
-         <div class="h-2 bg-[#2d2d2d] rounded-full overflow-hidden">
-          <div class="h-full bg-[#00fff9] rounded-full" style="width: 85%">
-          </div>
-         </div>
-        </div>
-        <div>
-         <div class="flex justify-between mb-2">
-          <span class="text-[14px]">
-           Cryptography
-          </span>
-          <span class="text-[14px] font-mono text-[#00fff9]">
-           72%
-          </span>
-         </div>
-         <div class="h-2 bg-[#2d2d2d] rounded-full overflow-hidden">
-          <div class="h-full bg-[#00fff9] rounded-full" style="width: 72%">
-          </div>
-         </div>
-        </div>
-        <div>
-         <div class="flex justify-between mb-2">
-          <span class="text-[14px]">
-           Web Security
-          </span>
-          <span class="text-[14px] font-mono text-[#00fff9]">
-           64%
-          </span>
-         </div>
-         <div class="h-2 bg-[#2d2d2d] rounded-full overflow-hidden">
-          <div class="h-full bg-[#00fff9] rounded-full" style="width: 64%">
-          </div>
-         </div>
-        </div>
-        <div>
-         <div class="flex justify-between mb-2">
-          <span class="text-[14px]">
-           Malware Analysis
-          </span>
-          <span class="text-[14px] font-mono text-[#00fff9]">
-           58%
-          </span>
-         </div>
-         <div class="h-2 bg-[#2d2d2d] rounded-full overflow-hidden">
-          <div class="h-full bg-[#00fff9] rounded-full" style="width: 58%">
-          </div>
-         </div>
-        </div>
-        <div>
-         <div class="flex justify-between mb-2">
-          <span class="text-[14px]">
-           Incident Response
-          </span>
-          <span class="text-[14px] font-mono text-[#00fff9]">
-           41%
-          </span>
-         </div>
-         <div class="h-2 bg-[#2d2d2d] rounded-full overflow-hidden">
-          <div class="h-full bg-[#00fff9] rounded-full" style="width: 41%">
-          </div>
-         </div>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
-   <!--- END --->
-   <!--- START: Footer --->
-      <footer class="py-12 px-8 bg-[#1a1a1a] border-t border-[#2d2d2d]">
-    <div class="max-w-[1440px] mx-auto">
-     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-      <div>
-       <div class="flex items-center gap-2 mb-4">
-        <svg class="w-6 h-6" fill="none" viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-         <path d="M16 4L4 10V22L16 28L28 22V10L16 4Z" stroke="#00fff9" stroke-linejoin="round" stroke-width="2">
-         </path>
-         <path d="M16 16L22 12.5M16 16L10 12.5M16 16V22" stroke="#00fff9" stroke-width="2">
-         </path>
-        </svg>
-        <span class="text-[18px] font-mono font-bold text-[#00fff9]">
-         CyberVerse
-        </span>
-       </div>
-       <p class="text-[14px] text-[#8a8a8a]">
-        Master the art of defense through hands-on cybersecurity training.
-       </p>
-      </div>
-      <div>
-       <h4 class="font-mono font-semibold mb-4">
-        Platform
-       </h4>
-       <div class="space-y-2 text-[14px] text-[#8a8a8a]">
-        <div>
-         Learning Paths
-        </div>
-        <div>
-         Security Tools
-        </div>
-        <div>
-         CTF Challenges
-        </div>
-        <div>
-         Lab Environments
-        </div>
-       </div>
-      </div>
-      <div>
-       <h4 class="font-mono font-semibold mb-4">
-        Community
-       </h4>
-       <div class="space-y-2 text-[14px] text-[#8a8a8a]">
-        <div>
-         Forums
-        </div>
-        <div>
-         Discord Server
-        </div>
-        <div>
-         Leaderboards
-        </div>
-        <div>
-         Events
-        </div>
-       </div>
-      </div>
-      <div>
-       <h4 class="font-mono font-semibold mb-4">
-        Resources
-       </h4>
-       <div class="space-y-2 text-[14px] text-[#8a8a8a]">
-        <div>
-         Documentation
-        </div>
-        <div>
-         Blog
-        </div>
-        <div>
-         API Reference
-        </div>
-        <div>
-         Support
-        </div>
-       </div>
-      </div>
-     </div>
-     <div class="pt-8 border-t border-[#2d2d2d] flex items-center justify-between text-[14px] text-[#8a8a8a]">
-      <div>
-       © 2024 CyberVerse. All rights reserved.
-      </div>
-      <div class="flex items-center gap-6">
-       <span>
-        Privacy Policy
-       </span>
-       <span>
-        Terms of Service
-       </span>
-       <span>
-        Security
-       </span>
-      </div>
-     </div>
-    </div>
-   </footer>
-   <!--- END --->
-  </main><script src="/static/main.js"></script>
- </body>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="mt-16 p-6 border-t border-[#2d2d2d] text-center text-[#8a8a8a]">
+    © 2026 CyberVerse | Built for Cybersecurity Learning
+</footer>
+
+</body>
 </html>

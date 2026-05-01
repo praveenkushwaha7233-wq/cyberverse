@@ -1,26 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Panel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - CyberVerse</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+    </style>
 </head>
-<body style="background:black; color:white; font-family:Arial;">
 
-<h1>👑 Admin Panel</h1>
+<body class="bg-[#0a0a0a] text-[#e0e0e0] p-6">
 
-<h2>Add Tool</h2>
-<form method="POST">
-    Tool Name: <input type="text" name="name"><br><br>
-    Description: <input type="text" name="desc"><br><br>
-    <button type="submit">Add Tool</button>
-</form>
+<!-- HEADER -->
+<div class="flex justify-between items-center mb-8">
+    <h1 class="text-2xl font-mono text-[#00fff9]">
+        👑 Admin Panel
+    </h1>
 
-<hr>
+    <a href="/dashboard"
+        class="border border-[#00fff9] px-4 py-2 rounded text-[#00fff9] hover:bg-[#00fff9] hover:text-black">
+        ⬅ Dashboard
+    </a>
+</div>
 
-<h2>All Tools</h2>
+<!-- ADD TOOL -->
+<div class="bg-[#1a1a1a] border border-[#2d2d2d] p-6 rounded mb-8">
+    <h2 class="text-xl font-mono text-[#00fff9] mb-4">
+        ➕ Add New Tool
+    </h2>
 
-{% for tool in tools %}
-    <p><b>{{ tool.name }}</b> - {{ tool.desc }}</p>
-{% endfor %}
+    <form method="POST" class="space-y-4">
+
+        <input type="text" name="name" placeholder="Tool Name" required
+            class="w-full p-2 bg-black border border-[#2d2d2d] rounded">
+
+        <input type="text" name="desc" placeholder="Description" required
+            class="w-full p-2 bg-black border border-[#2d2d2d] rounded">
+
+        <button
+            class="border border-[#00fff9] px-6 py-2 rounded text-[#00fff9] hover:bg-[#00fff9] hover:text-black">
+            Add Tool
+        </button>
+
+    </form>
+</div>
+
+<!-- TOOL LIST -->
+<div class="bg-[#1a1a1a] border border-[#2d2d2d] p-6 rounded">
+    <h2 class="text-xl font-mono text-[#00fff9] mb-4">
+        🛠 All Tools
+    </h2>
+
+    {% if tools|length == 0 %}
+        <p class="text-[#8a8a8a]">No tools added yet.</p>
+    {% endif %}
+
+    <div class="space-y-3">
+        {% for tool in tools %}
+            <div class="border border-[#2d2d2d] p-4 rounded flex justify-between items-center">
+                <div>
+                    <h3 class="font-mono text-[#00fff9]">{{ tool.name }}</h3>
+                    <p class="text-[#8a8a8a] text-sm">{{ tool.desc }}</p>
+                </div>
+
+                <!-- Future delete/edit buttons -->
+                <span class="text-xs text-gray-500">ID: {{ tool._id }}</span>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
 
 </body>
 </html>

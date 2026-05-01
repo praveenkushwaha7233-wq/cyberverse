@@ -1,14 +1,79 @@
 <!DOCTYPE html>
-<html>
-<body style="background:black;color:white">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools - CyberVerse</title>
 
-<h2 class="text-2xl text-cyan-400">Security Tools</h2>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-<button onclick="scan()" class="bg-cyan-400 text-black p-2 m-2">Port Scanner</button>
-<button onclick="hash()" class="bg-green-400 text-black p-2 m-2">Hash Cracker</button>
-<button onclick="traffic()" class="bg-purple-400 text-black p-2 m-2">Packet Analyzer</button>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
-<script src="/static/main.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+
+<body class="bg-[#0a0a0a] text-[#e0e0e0] p-6">
+
+<h1 class="text-3xl font-mono text-[#00fff9] mb-8">
+    🛠 Security Tools Dashboard
+</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <!-- PORT SCANNER -->
+    <div class="bg-[#1a1a1a] border border-[#2d2d2d] p-6 rounded">
+        <h2 class="text-xl font-mono text-[#00fff9] mb-2">Port Scanner</h2>
+        <p class="text-[#8a8a8a] mb-4">Scan open ports on a target system</p>
+        <button onclick="scan()"
+            class="border border-[#00fff9] px-4 py-2 rounded text-[#00fff9] hover:bg-[#00fff9] hover:text-black">
+            Launch
+        </button>
+    </div>
+
+    <!-- HASH CRACKER -->
+    <div class="bg-[#1a1a1a] border border-[#2d2d2d] p-6 rounded">
+        <h2 class="text-xl font-mono text-green-400 mb-2">Hash Cracker</h2>
+        <p class="text-[#8a8a8a] mb-4">Attempt to crack hashed passwords</p>
+        <button onclick="hashCrack()"
+            class="border border-green-400 px-4 py-2 rounded text-green-400 hover:bg-green-400 hover:text-black">
+            Launch
+        </button>
+    </div>
+
+    <!-- PACKET ANALYZER -->
+    <div class="bg-[#1a1a1a] border border-[#2d2d2d] p-6 rounded">
+        <h2 class="text-xl font-mono text-purple-400 mb-2">Packet Analyzer</h2>
+        <p class="text-[#8a8a8a] mb-4">Analyze network traffic</p>
+        <button onclick="analyzeTraffic()"
+            class="border border-purple-400 px-4 py-2 rounded text-purple-400 hover:bg-purple-400 hover:text-black">
+            Launch
+        </button>
+    </div>
+
+</div>
+
+<script>
+function scan() {
+    let target = prompt("Enter IP address:");
+    if(target){
+        alert("Scanning " + target + "...\nOpen ports: 22, 80, 443");
+    }
+}
+
+function hashCrack() {
+    let hash = prompt("Enter hash:");
+    if(hash){
+        alert("Cracking hash...\nResult: password123");
+    }
+}
+
+function analyzeTraffic() {
+    alert("Analyzing packets...\nSuspicious traffic detected!");
+}
+</script>
 
 </body>
 </html>
