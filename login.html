@@ -23,18 +23,17 @@ body { font-family: 'Inter', sans-serif; }
 Login to CyberVerse
 </h2>
 
-<!-- ✅ REMOVE form submission -->
 <form onsubmit="loginUser(event)" class="space-y-4">
 
     <div>
         <label class="text-sm text-[#8a8a8a]">Username</label>
-        <input id="username" name="username" required
+        <input id="username" required
         class="w-full mt-1 p-2 bg-[#0a0a0a] border border-[#2d2d2d] rounded text-white">
     </div>
 
     <div>
         <label class="text-sm text-[#8a8a8a]">Password</label>
-        <input id="password" type="password" name="password" required
+        <input id="password" type="password" required
         class="w-full mt-1 p-2 bg-[#0a0a0a] border border-[#2d2d2d] rounded text-white">
     </div>
 
@@ -47,29 +46,44 @@ Login to CyberVerse
 
 <p class="text-sm text-center text-[#8a8a8a] mt-4">
 Don't have an account?
-<a href="register.html" class="text-[#00fff9]">Register</a>
+<a href="/register.html" class="text-[#00fff9]">Register</a>
 </p>
 
 </div>
 
 <script>
-function loginUser(event) {
-    event.preventDefault(); // stop page reload
+function loginUser(e) {
+    e.preventDefault();
 
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+    let username = document.getElementById("username").value.trim();
+    let password = document.getElementById("password").value.trim();
 
-    console.log("Clicked Login"); // DEBUG
+    // ❌ Empty validation
+    if (!username || !password) {
+        alert("Please enter username & password");
+        return;
+    }
 
+    // ✅ ADMIN LOGIN
     if (username === "admin" && password === "admin") {
+
+        localStorage.setItem("cv_admin", "true");
+        localStorage.setItem("cv_username", username);
+
         alert("Admin Login Successful 🚀");
 
-        localStorage.setItem("isAdmin", "true");
-
-        window.location.href = "admin/admin.html";
-    } else {
-        alert("Invalid Credentials ❌");
+        window.location.href = "/admin/admin.html";
+        return;
     }
+
+    // ✅ NORMAL USER LOGIN
+    localStorage.setItem("cv_admin", "false");
+    localStorage.setItem("cv_username", username);
+
+    alert("User Login Successful 👨‍💻");
+
+    // 🔥 REDIRECT TO DASHBOARD
+    window.location.href = "/dashboard.html";
 }
 </script>
 

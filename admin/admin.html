@@ -21,7 +21,6 @@ body { font-family: 'Inter', sans-serif; }
     box-shadow: 0 0 20px rgba(0,255,249,0.3);
 }
 
-/* ACTIVE NAV */
 .nav-btn.active {
     color: #22d3ee;
     border-left: 3px solid #22d3ee;
@@ -29,16 +28,17 @@ body { font-family: 'Inter', sans-serif; }
 }
 </style>
 </head>
-<script>
-const user = JSON.parse(localStorage.getItem("user"));
-
-if(!user || user.role !== "admin"){
-    alert("Access Denied");
-    window.location.href = "../client/login.html";
-}
-</script>
 
 <body class="bg-[#0a0a0a] text-gray-200">
+
+<script>
+// ✅ FIXED ROLE CHECK (NO LOOP, NO WRONG PATH)
+
+if (localStorage.getItem("cv_admin") !== "true") {
+    alert("Access Denied 🚫");
+    window.location.href = "/login.html";
+}
+</script>
 
 <div class="flex h-screen">
 
@@ -48,15 +48,11 @@ if(!user || user.role !== "admin"){
 <h1 class="mono text-xl text-cyan-400 mb-8">CyberVerse Admin</h1>
 
 <nav class="space-y-4 mono text-sm">
-<button onclick="showAdminSection('dashboard')" class="nav-btn active block text-left w-full">Dashboard</button>
-
-<button onclick="showAdminSection('users')" class="nav-btn block text-gray-400 hover:text-white w-full text-left">Users</button>
-
-<button onclick="showAdminSection('labs')" class="nav-btn block text-gray-400 hover:text-white w-full text-left">Labs</button>
-
-<button onclick="showAdminSection('progress')" class="nav-btn block text-gray-400 hover:text-white w-full text-left">Progress</button>
-
-<a href="../index.html" class="block text-gray-400 hover:text-white">Back to Site</a>
+<button onclick="showAdminSection('dashboard', event)" class="nav-btn active w-full text-left">Dashboard</button>
+<button onclick="showAdminSection('users', event)" class="nav-btn w-full text-left text-gray-400 hover:text-white">Users</button>
+<button onclick="showAdminSection('labs', event)" class="nav-btn w-full text-left text-gray-400 hover:text-white">Labs</button>
+<button onclick="showAdminSection('progress', event)" class="nav-btn w-full text-left text-gray-400 hover:text-white">Progress</button>
+<a href="/index.html" class="block text-gray-400 hover:text-white">Back to Site</a>
 </nav>
 
 </div>
@@ -66,13 +62,16 @@ if(!user || user.role !== "admin"){
 
 <!-- HEADER -->
 <div class="flex justify-between items-center mb-10">
-<h2 class="mono text-3xl">Admin Dashboard</h2>
-<button onclick="logout()" class="bg-red-500 px-4 py-2 rounded">Logout</button>
+    <h2 class="mono text-3xl">Admin Dashboard</h2>
+
+    <div class="flex items-center gap-4">
+        <span id="adminUser" class="text-cyan-400 mono"></span>
+        <button onclick="logout()" class="bg-red-500 px-4 py-2 rounded">Logout</button>
+    </div>
 </div>
 
 <!-- DASHBOARD -->
 <div id="dashboard" class="admin-section">
-
 <div class="grid md:grid-cols-4 gap-6 mb-10">
 
 <div class="card bg-[#111] p-6 rounded border border-gray-800 glow">
@@ -96,12 +95,10 @@ if(!user || user.role !== "admin"){
 </div>
 
 </div>
-
 </div>
 
 <!-- USERS -->
 <div id="users" class="admin-section hidden bg-[#111] p-6 rounded border border-gray-800 mb-10">
-
 <h3 class="mono text-xl mb-4">User Management</h3>
 
 <table class="w-full text-left text-sm">
@@ -113,59 +110,24 @@ if(!user || user.role !== "admin"){
 <th>Actions</th>
 </tr>
 </thead>
-
 <tbody id="userTable"></tbody>
-
 </table>
-
 </div>
 
 <!-- LABS -->
 <div id="labs" class="admin-section hidden bg-[#111] p-6 rounded border border-gray-800 mb-10">
-
 <h3 class="mono text-xl mb-4">Labs Management</h3>
 
-<p class="text-gray-400 mb-4">Control cybersecurity labs and challenges.</p>
+<button onclick="addLab()" class="mb-4 bg-cyan-400 text-black px-3 py-2 rounded text-sm">
++ Add Lab
+</button>
 
-<div class="space-y-3">
-<div class="flex justify-between bg-[#0a0a0a] p-3 rounded">
-<span>SQL Injection Lab</span>
-<button class="bg-cyan-400 text-black px-2 py-1 rounded text-xs">Edit</button>
-</div>
-
-<div class="flex justify-between bg-[#0a0a0a] p-3 rounded">
-<span>XSS Lab</span>
-<button class="bg-cyan-400 text-black px-2 py-1 rounded text-xs">Edit</button>
-</div>
-</div>
-
+<div id="labList" class="space-y-3"></div>
 </div>
 
 <!-- PROGRESS -->
 <div id="progress" class="admin-section hidden bg-[#111] p-6 rounded border border-gray-800">
-
 <h3 class="mono text-xl mb-4">Platform Activity</h3>
-
-<p class="text-gray-400 text-sm">Monitor engagement and learning trends.</p>
-
-<div class="mt-6 space-y-4">
-
-<div>
-<p class="text-sm">Learning Completion</p>
-<div class="w-full bg-gray-800 h-2 rounded">
-<div class="bg-cyan-400 h-2 rounded" style="width:70%"></div>
-</div>
-</div>
-
-<div>
-<p class="text-sm">Tool Usage</p>
-<div class="w-full bg-gray-800 h-2 rounded">
-<div class="bg-cyan-400 h-2 rounded" style="width:55%"></div>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -173,40 +135,32 @@ if(!user || user.role !== "admin"){
 
 <script>
 
-// NAVIGATION SWITCH
-function showAdminSection(sectionId) {
-    document.querySelectorAll('.admin-section').forEach(sec => {
-        sec.classList.add('hidden');
-    });
+// NAV
+function showAdminSection(id, event) {
+    document.querySelectorAll('.admin-section').forEach(sec => sec.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
 
-    document.getElementById(sectionId).classList.remove('hidden');
-
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
 }
 
-// SAMPLE USERS
+// USERS
 let users = JSON.parse(localStorage.getItem("cv_users")) || [
-    { name: "Kabir", xp: 1200 },
-    { name: "Alex", xp: 800 }
+    { name: "Kabir", xp: 1500 },
+    { name: "Sara", xp: 800 }
 ];
 
-// LEVEL SYSTEM
 function getLevel(xp) {
     return Math.floor(xp / 500) + 1;
 }
 
-// RENDER USERS
 function renderUsers() {
     let table = document.getElementById("userTable");
     table.innerHTML = "";
 
     let totalXP = 0;
 
-    users.forEach((user, index) => {
+    users.forEach((user, i) => {
         totalXP += user.xp;
 
         table.innerHTML += `
@@ -214,12 +168,11 @@ function renderUsers() {
             <td class="py-3">${user.name}</td>
             <td>${user.xp}</td>
             <td>${getLevel(user.xp)}</td>
-            <td class="space-x-2">
-                <button onclick="addXP(${index})" class="bg-cyan-400 text-black px-2 py-1 rounded text-xs">+XP</button>
-                <button onclick="resetUser(${index})" class="bg-red-500 px-2 py-1 rounded text-xs">Reset</button>
+            <td>
+                <button onclick="addXP(${i})" class="bg-cyan-400 text-black px-2 py-1 rounded text-xs">+XP</button>
+                <button onclick="resetUser(${i})" class="bg-red-500 px-2 py-1 rounded text-xs">Reset</button>
             </td>
-        </tr>
-        `;
+        </tr>`;
     });
 
     document.getElementById("totalUsers").innerText = users.length;
@@ -228,32 +181,58 @@ function renderUsers() {
     localStorage.setItem("cv_users", JSON.stringify(users));
 }
 
-// ADD XP
-function addXP(index) {
-    users[index].xp += 100;
+function addXP(i) {
+    users[i].xp += 100;
     renderUsers();
 }
 
-// RESET USER
-function resetUser(index) {
-    users[index].xp = 0;
+function resetUser(i) {
+    users[i].xp = 0;
     renderUsers();
 }
 
-// LOGOUT
+// LABS
+let labs = JSON.parse(localStorage.getItem("cv_labs")) || [];
+
+function addLab() {
+    let lab = {
+        title: "New Lab " + (labs.length + 1),
+        xp: 100
+    };
+    labs.push(lab);
+    localStorage.setItem("cv_labs", JSON.stringify(labs));
+    renderLabs();
+}
+
+function renderLabs() {
+    let list = document.getElementById("labList");
+    list.innerHTML = "";
+
+    labs.forEach(l => {
+        list.innerHTML += `
+        <div class="bg-[#0a0a0a] p-3 rounded flex justify-between">
+            <span>${l.title}</span>
+            <span class="text-cyan-400">${l.xp} XP</span>
+        </div>`;
+    });
+}
+
+// LOGOUT FIX
 function logout() {
-    alert("Logged out!");
-    window.location.href = "../login.html";
+    localStorage.removeItem("cv_admin");
+    localStorage.removeItem("cv_username");
+    window.location.href = "/login.html";
+}
+
+// SHOW USERNAME
+const username = localStorage.getItem("cv_username");
+if (username) {
+    document.getElementById("adminUser").innerText = "👨‍💻 " + username;
 }
 
 // INIT
 renderUsers();
-
-
-if (localStorage.getItem("isAdmin") !== "true") {
-    document.body.innerHTML = "<h1 style='color:red;text-align:center;margin-top:20%'>Access Denied 🚫</h1>";
-}
-
+renderLabs();
 
 </script>
 

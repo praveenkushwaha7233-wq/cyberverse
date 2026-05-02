@@ -81,14 +81,24 @@ Community
 </span>
 
 <!-- PROFILE ICON -->
-<div onclick="openProfile()" class="cursor-pointer w-9 h-9 border border-cyan-400 rounded-full flex items-center justify-center hover:shadow-[0_0_15px_cyan]">
-<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-d="M5.121 17.804A9 9 0 1118.88 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-</svg>
+<div class="flex items-center gap-4">
+
+<span id="xpDisplay" class="text-cyan-400 mono text-sm">XP: 0</span>
+
+<div class="w-9 h-9 border border-cyan-400 rounded-full flex items-center justify-center hover:shadow-[0_0_15px_cyan]">
+    <!-- USER ICON -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M5.121 17.804A9 9 0 1118.88 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+    </svg>
 </div>
 
 </div>
+
+</div>
+
+
+
 </nav>
 
 <main class="pt-[80px]">
@@ -98,12 +108,21 @@ d="M5.121 17.804A9 9 0 1118.88 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
 <div class="max-w-7xl mx-auto">
 
 <h1 class="mono text-5xl font-bold mb-6 leading-tight">
-Master the Art of <span class="text-cyan-400">Defense</span>
+Master the Art of <span class="text-cyan-400">Defense</span> 
 </h1>
 
-<p class="text-gray-400 text-lg max-w-2xl mb-8">
-Build real-world cybersecurity skills through interactive labs and tools.
+
+---> Hack Your Skills, DEFEND Your Systems, and JOIN the CyberVerse Community! <br>
+---> Build real-world cybersecurity skills through interactive labs and tools. <br>
+---> Earn XP, track progress, and compete with friends on the leaderboard! <br>
+
 </p>
+<!-- TERMINAL TEXT -->
+<p class="font-mono text-cyan-400 mt-4 text-center animate-pulse">
+>> initializing cyberverse... Let's get you started on your cybersecurity journey! 🚀
+</p>
+
+<br>
 
 <div class="flex gap-4 mb-12">
 <button onclick="startLearning()" class="btn bg-cyan-400 text-black px-6 py-3 mono font-semibold rounded">Start Learning</button>
@@ -115,6 +134,27 @@ Admin
 
 </div>
 
+
+
+
+
+<!-- 🧑‍💻 HACKER ICON HERO -->
+<!-- 🕶️ FLOATING HACKER ICON -->
+<div class="fixed bottom-6 right-6 z-50">
+
+    <div class="relative animate-pulse">
+
+        <div class="absolute inset-0 blur-xl bg-cyan-400 opacity-30 rounded-full"></div>
+
+        <div class="relative bg-black p-4 rounded-full border border-cyan-400 shadow-[0_0_20px_cyan] cursor-pointer hover:scale-110 transition">
+
+            <span class="text-cyan-400 text-xl">💻</span>
+
+        </div>
+
+    </div>
+
+</div>
 <!-- STATS -->
 <div class="grid md:grid-cols-3 gap-6 max-w-3xl">
 
@@ -137,6 +177,166 @@ Admin
 
 </div>
 </section>
+
+
+
+<!-- CYBERSECURITY ROADMAP SECTION -->
+<section class="px-6 py-20 bg-[#0a0a0a]">
+<div class="max-w-7xl mx-auto">
+
+<div class="text-center mb-14">
+<h2 class="mono text-3xl mb-3">Cybersecurity Career Roadmap</h2>
+<p class="text-gray-400 max-w-2xl mx-auto">
+Choose your path in cybersecurity and build skills step-by-step like real-world professionals.
+</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<!-- RED TEAM -->
+<div class="bg-[#111] p-6 rounded-lg border border-red-500 glow hover:scale-105 transition duration-300">
+<h3 class="mono text-xl text-red-400 mb-3">🔴 Red Team (Offensive)</h3>
+<p class="text-gray-400 text-sm mb-4">Focus on hacking, penetration testing, and exploiting vulnerabilities.</p>
+<ul class="text-sm text-gray-300 space-y-2 mb-4">
+<li>• Networking & Linux Basics</li>
+<li>• Web Security (SQLi, XSS)</li>
+<li>• Tools: Nmap, Burp Suite, Metasploit</li>
+<li>• Privilege Escalation</li>
+<li>• CTF Challenges & Bug Bounty</li>
+</ul>
+<button onclick="startPath('red')" class="border border-red-400 text-red-400 px-4 py-2 rounded text-sm hover:bg-red-400 hover:text-black transition">Start Path →</button>
+</div>
+
+<!-- BLUE TEAM -->
+<div class="bg-[#111] p-6 rounded-lg border border-blue-500 glow hover:scale-105 transition duration-300">
+<h3 class="mono text-xl text-blue-400 mb-3">🔵 Blue Team (Defensive)</h3>
+<p class="text-gray-400 text-sm mb-4">Protect systems, detect attacks, and respond to incidents.</p>
+<ul class="text-sm text-gray-300 space-y-2 mb-4">
+<li>• Networking & System Logs</li>
+<li>• SIEM Tools (Splunk)</li>
+<li>• Incident Response</li>
+<li>• Threat Hunting</li>
+<li>• Malware Analysis Basics</li>
+</ul>
+<button onclick="startPath('blue')" class="border border-blue-400 text-blue-400 px-4 py-2 rounded text-sm hover:bg-blue-400 hover:text-black transition">Start Path →</button>
+</div>
+
+<!-- CLOUD SECURITY -->
+<div class="bg-[#111] p-6 rounded-lg border border-cyan-400 glow hover:scale-105 transition duration-300">
+<h3 class="mono text-xl text-cyan-400 mb-3">☁️ Cloud Security</h3>
+<p class="text-gray-400 text-sm mb-4">Secure cloud platforms like AWS, Azure, and Google Cloud.</p>
+<ul class="text-sm text-gray-300 space-y-2 mb-4">
+<li>• Cloud Fundamentals</li>
+<li>• IAM & Access Control</li>
+<li>• Secure Deployments</li>
+<li>• Container Security</li>
+<li>• DevSecOps Basics</li>
+</ul>
+<button onclick="startPath('cloud')" class="border border-cyan-400 text-cyan-400 px-4 py-2 rounded text-sm hover:bg-cyan-400 hover:text-black transition">Start Path →</button>
+</div>
+
+<!-- PURPLE TEAM -->
+<div class="bg-[#111] p-6 rounded-lg border border-purple-500 glow hover:scale-105 transition duration-300">
+<h3 class="mono text-xl text-purple-400 mb-3">🟣 Purple Team</h3>
+<p class="text-gray-400 text-sm mb-4">Combines Red & Blue teams to improve security strategies.</p>
+<ul class="text-sm text-gray-300 space-y-2 mb-4">
+<li>• Attack Simulation</li>
+<li>• Defense Testing</li>
+<li>• Collaboration</li>
+<li>• Threat Validation</li>
+<li>• Security Optimization</li>
+</ul>
+<button onclick="startPath('purple')" class="border border-purple-400 text-purple-400 px-4 py-2 rounded text-sm hover:bg-purple-400 hover:text-black transition">Start Path →</button>
+</div>
+
+<!-- MALWARE ANALYSIS -->
+<div class="bg-[#111] p-6 rounded-lg border border-yellow-500 glow hover:scale-105 transition duration-300">
+<h3 class="mono text-xl text-yellow-400 mb-3">🦠 Malware Analysis</h3>
+<p class="text-gray-400 text-sm mb-4">Analyze malicious software and understand cyber threats.</p>
+<ul class="text-sm text-gray-300 space-y-2 mb-4">
+<li>• Static Analysis</li>
+<li>• Dynamic Analysis</li>
+<li>• Reverse Engineering</li>
+<li>• Sandbox Testing</li>
+<li>• Threat Intelligence</li>
+</ul>
+<button onclick="startPath('malware')" class="border border-yellow-400 text-yellow-400 px-4 py-2 rounded text-sm hover:bg-yellow-400 hover:text-black transition">Start Path →</button>
+</div>
+
+<!-- DIGITAL FORENSICS -->
+<div class="bg-[#111] p-6 rounded-lg border border-green-500 glow hover:scale-105 transition duration-300">
+<h3 class="mono text-xl text-green-400 mb-3">🧪 Digital Forensics</h3>
+<p class="text-gray-400 text-sm mb-4">Investigate cyber incidents and recover digital evidence.</p>
+<ul class="text-sm text-gray-300 space-y-2 mb-4">
+<li>• Disk & Memory Analysis</li>
+<li>• Evidence Collection</li>
+<li>• File Recovery</li>
+<li>• Incident Investigation</li>
+<li>• Legal Reporting</li>
+</ul>
+<button onclick="startPath('forensics')" class="border border-green-400 text-green-400 px-4 py-2 rounded text-sm hover:bg-green-400 hover:text-black transition">Start Path →</button>
+</div>
+
+
+</div>
+</div>
+</section>
+
+<div class="text-center mb-14">
+<h2 class="mono text-3xl mb-3">There are several paths to choose from</h2>
+<p class="text-gray-400 max-w-2xl mx-auto">
+Protection -- Detection -- Reaction -- like real-world professionals.
+</p>
+</div>
+
+
+
+
+
+<!-- ROADMAP LEVELS -->
+<div class="mt-16">
+
+<h3 class="mono text-2xl mb-8 text-center">Learning Progression</h3>
+
+<div class="grid md:grid-cols-4 gap-6 text-center">
+
+<div class="bg-[#111] p-5 rounded border border-gray-800 hover:shadow-[0_0_15px_cyan] transition">
+<h4 class="mono text-cyan-400 mb-2">Beginner</h4>
+<p class="text-gray-400 text-sm">
+Basics of Networking, Linux, and Cyber Hygiene
+</p>
+</div>
+
+<div class="bg-[#111] p-5 rounded border border-gray-800 hover:shadow-[0_0_15px_cyan] transition">
+<h4 class="mono text-cyan-400 mb-2">Intermediate</h4>
+<p class="text-gray-400 text-sm">
+Web Security, Tools, and Practical Labs
+</p>
+</div>
+
+<div class="bg-[#111] p-5 rounded border border-gray-800 hover:shadow-[0_0_15px_cyan] transition">
+<h4 class="mono text-cyan-400 mb-2">Advanced</h4>
+<p class="text-gray-400 text-sm">
+Exploitation, Defense Systems & Automation
+</p>
+</div>
+
+<div class="bg-[#111] p-5 rounded border border-gray-800 hover:shadow-[0_0_15px_cyan] transition">
+<h4 class="mono text-cyan-400 mb-2">Expert</h4>
+<p class="text-gray-400 text-sm">
+Real-world Attacks, Red Teaming & Research
+</p>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+
+
 
 <!-- LEARNING PATHS -->
 <section id="learning" class="px-6 py-20">
@@ -313,6 +513,27 @@ function exploreTools() {
 function goAdmin(){
     window.location.href = "../admin/admin.html";
 }
+
+
+//---------------labs script///////////////
+
+
+function startPath(path) {
+
+    // save selected path
+    localStorage.setItem("cv_path", path);
+
+    // give XP for choosing path
+    let xp = parseInt(localStorage.getItem("cv_xp")) || 0;
+    xp += 20;
+    localStorage.setItem("cv_xp", xp);
+
+    alert("Path selected 🚀 +20 XP");
+
+    // redirect to labs
+    window.location.href = "labs.html";
+}
+
 
 </script>
 

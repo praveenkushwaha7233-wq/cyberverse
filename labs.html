@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Labs - CyberVerse</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+
+<body class="bg-[#0a0a0a] text-[#e0e0e0] p-6">
+
+
+<!-- HEADER -->
+<div class="mb-10">
+    <h1 class="text-4xl font-mono text-[#00fff9] mb-2 tracking-wide">
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  🧪 Cyber Security Labs 
+    </h1>
+    <p class="text-gray-500 text-sm" style="font-size: 24px;">
+        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    Simulated environment • Practice hacking safely • Earn XP ⚡
+    </p>
+</div>
+
+<div class="grid md:grid-cols-2 gap-8">
+
+<!-- 🔴 SQL INJECTION LAB -->
+<div class="bg-[#0f0f0f] p-6 rounded-xl border border-cyan-400/20 shadow-lg hover:shadow-[0_0_20px_cyan] transition">
+
+    <div class="flex justify-between items-center mb-4">
+        <h3 class="font-mono text-xl text-cyan-400">💣 SQL Injection</h3>
+        <span class="text-xs text-gray-400">Difficulty: Medium</span>
+    </div>
+
+    <p class="text-gray-400 text-sm mb-4">
+        Bypass authentication using SQL Injection.<br>
+        Hint: <span class="text-cyan-400 font-mono">' OR '1'='1</span>
+    </p>
+
+    <input id="username" type="text" placeholder="Username"
+    class="w-full mb-3 p-2 bg-black border border-gray-700 rounded focus:outline-none focus:border-cyan-400">
+
+    <input id="password" type="text" placeholder="Password"
+    class="w-full mb-4 p-2 bg-black border border-gray-700 rounded focus:outline-none focus:border-cyan-400">
+
+    <button onclick="checkSQLi()"
+    class="w-full border border-cyan-400 py-2 rounded text-cyan-400 hover:bg-cyan-400 hover:text-black transition">
+    Exploit Login →
+    </button>
+
+    <p id="result" class="mt-4 text-sm font-mono"></p>
+</div>
+
+<!-- 🟡 PASSWORD CHECKER -->
+<div class="bg-[#0f0f0f] p-6 rounded-xl border border-yellow-400/20 shadow-lg hover:shadow-[0_0_20px_yellow] transition">
+
+    <div class="flex justify-between items-center mb-4">
+        <h3 class="font-mono text-xl text-yellow-400">🔐 Password Analyzer</h3>
+        <span class="text-xs text-gray-400">Difficulty: Easy</span>
+    </div>
+
+    <p class="text-gray-400 text-sm mb-4">
+        Test password strength like a security analyst.
+    </p>
+
+    <input id="passwordInput" type="text" placeholder="Enter password"
+    class="w-full mb-4 p-2 bg-black border border-gray-700 rounded focus:outline-none focus:border-yellow-400">
+
+    <button onclick="checkPassword()"
+    class="w-full border border-yellow-400 py-2 rounded text-yellow-400 hover:bg-yellow-400 hover:text-black transition">
+    Analyze Password →
+    </button>
+
+    <p id="strengthResult" class="mt-4 text-sm font-mono"></p>
+</div>
+
+</div>
+
+<!-- ✅ COMPLETE BUTTON (UPGRADED) -->
+<div class="mt-10 flex justify-between items-center">
+
+    <button onclick="completeLab()"
+    class="bg-green-400 px-6 py-3 rounded font-mono text-black hover:scale-105 transition shadow-lg">
+    ✅ Complete Lab (+XP)
+    </button>
+
+    <div class="text-sm text-gray-400">
+        Progress stored locally ⚡
+    </div>
+
+</div>
+
+<!-- 🔥 LAB PATH GRID -->
+<div id="labsContainer"
+class="mt-10 grid md:grid-cols-3 gap-6">
+</div>
+
+
+<!-- 🟣 ADVANCED INTERACTIVE LABS -->
+<div class="mt-12 grid md:grid-cols-2 gap-6">
+
+<!-- 🟡 XSS LAB -->
+<div class="bg-[#111] p-6 rounded border border-yellow-500 hover:shadow-[0_0_20px_yellow] transition">
+<h3 class="font-mono text-xl text-yellow-400 mb-4">⚡ XSS Attack Lab</h3>
+
+<p class="text-gray-400 text-sm mb-3">
+Inject JavaScript into the input field.<br>
+Hint: <span class="text-yellow-400">&lt;script&gt;alert(1)&lt;/script&gt;</span>
+</p>
+
+<input id="xssInput" type="text" placeholder="Enter payload"
+class="w-full mb-3 p-2 bg-black border border-gray-700 rounded">
+
+<button onclick="runXSS()" class="border border-yellow-400 px-4 py-2 text-yellow-400 rounded">
+Execute
+</button>
+
+<p id="xssResult" class="mt-4 text-sm"></p>
+</div>
+
+<!-- 🔵 PORT SCANNER LAB -->
+<div class="bg-[#111] p-6 rounded border border-blue-500 hover:shadow-[0_0_20px_blue] transition">
+<h3 class="font-mono text-xl text-blue-400 mb-4">🌐 Port Scanning Lab</h3>
+
+<p class="text-gray-400 text-sm mb-3">
+Scan target ports to find open services.
+</p>
+
+<input id="targetIP" type="text" placeholder="Enter Target IP (e.g. 127.0.0.1)"
+class="w-full mb-3 p-2 bg-black border border-gray-700 rounded">
+
+<button onclick="scanPorts()" class="border border-blue-400 px-4 py-2 text-blue-400 rounded">
+Scan
+</button>
+
+<p id="scanResult" class="mt-4 text-sm"></p>
+</div>
+
+<!-- 🟢 PHISHING LAB -->
+<div class="bg-[#111] p-6 rounded border border-green-500 hover:shadow-[0_0_20px_green] transition">
+<h3 class="font-mono text-xl text-green-400 mb-4">🎣 Phishing Detection Lab</h3>
+
+<p class="text-gray-400 text-sm mb-3">
+Identify if the email is phishing or safe.
+</p>
+
+<select id="phishSelect" class="w-full mb-3 p-2 bg-black border border-gray-700 rounded">
+<option value="safe">Your bank login alert</option>
+<option value="phish">Click here to win $1000 NOW!!!</option>
+</select>
+
+<button onclick="checkPhishing()" class="border border-green-400 px-4 py-2 text-green-400 rounded">
+Analyze
+</button>
+
+<p id="phishResult" class="mt-4 text-sm"></p>
+</div>
+
+<!-- 🔴 BRUTE FORCE LAB -->
+<div class="bg-[#111] p-6 rounded border border-red-500 hover:shadow-[0_0_20px_red] transition">
+<h3 class="font-mono text-xl text-red-400 mb-4">💥 Brute Force Simulation</h3>
+
+<p class="text-gray-400 text-sm mb-3">
+Try cracking the password (hint: 1234)
+</p>
+
+<input id="bruteInput" type="text" placeholder="Enter password guess"
+class="w-full mb-3 p-2 bg-black border border-gray-700 rounded">
+
+<button onclick="runBruteForce()" class="border border-red-400 px-4 py-2 text-red-400 rounded">
+Attack
+</button>
+
+<p id="bruteResult" class="mt-4 text-sm"></p>
+</div>
+
+</div>
+
+<script>
+function completeLab(){
+    addXP(50);
+    alert("Lab Completed! +50 XP");
+}
+
+
+
+
+function checkSQLi() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let result = document.getElementById("result");
+
+    if (username.includes("' OR '1'='1") || password.includes("' OR '1'='1")) {
+        result.innerHTML = "✅ Injection Successful! XP +100";
+        result.style.color = "lightgreen";
+
+        // Add XP
+        let xp = parseInt(localStorage.getItem("xp")) || 0;
+        xp += 100;
+        localStorage.setItem("xp", xp);
+    } else {
+        result.innerHTML = "❌ Login Failed";
+        result.style.color = "red";
+    }
+}
+
+
+function checkPassword(){
+
+    let password = document.getElementById("passwordInput").value;
+    let result = document.getElementById("strengthResult");
+
+    let strength = 0;
+
+    // CONDITIONS
+    if(password.length >= 8) strength++;
+    if(/[A-Z]/.test(password)) strength++;
+    if(/[0-9]/.test(password)) strength++;
+    if(/[^A-Za-z0-9]/.test(password)) strength++;
+
+    // RESULT LOGIC
+    if(strength <= 1){
+        result.innerHTML = "❌ Weak Password";
+        result.style.color = "red";
+    }
+    else if(strength == 2){
+        result.innerHTML = "⚠️ Medium Password";
+        result.style.color = "orange";
+    }
+    else{
+        result.innerHTML = "✅ Strong Password! XP +50";
+        result.style.color = "lightgreen";
+
+        // ADD XP
+        let xp = parseInt(localStorage.getItem("xp")) || 0;
+        xp += 50;
+        localStorage.setItem("xp", xp);
+    }
+}
+
+
+
+
+
+// LAB DATABASE
+const labs = [
+    { title: "SQL Injection Lab", type: "red", xp: 50 },
+    { title: "XSS Attack Lab", type: "red", xp: 50 },
+    { title: "Port Scanning Lab", type: "red", xp: 40 },
+
+    { title: "Log Analysis Lab", type: "blue", xp: 40 },
+    { title: "SIEM Detection Lab", type: "blue", xp: 50 },
+    { title: "Incident Response Lab", type: "blue", xp: 60 },
+
+    { title: "AWS IAM Lab", type: "cloud", xp: 50 },
+    { title: "Docker Security Lab", type: "cloud", xp: 60 },
+    { title: "Cloud Misconfig Lab", type: "cloud", xp: 70 }
+];
+
+// GET SELECTED PATH
+let selectedPath = localStorage.getItem("cv_path");
+
+// RENDER LABS
+function loadLabs() {
+    let container = document.getElementById("labsContainer");
+    container.innerHTML = "";
+
+    let filtered = labs.filter(lab => lab.type === selectedPath);
+
+    filtered.forEach((lab, index) => {
+        container.innerHTML += `
+        <div class="bg-[#111] p-6 rounded border border-gray-800 hover:shadow-[0_0_15px_cyan] transition">
+            <h3 class="mono text-lg mb-2">${lab.title}</h3>
+            <p class="text-gray-400 text-sm mb-4">XP Reward: ${lab.xp}</p>
+
+            <button onclick="startLab(${index})"
+            class="bg-cyan-400 text-black px-4 py-2 rounded text-sm">
+            Start Lab
+            </button>
+        </div>
+        `;
+    });
+}
+
+// START LAB
+function startLab(index) {
+
+    let lab = labs[index];
+
+    let xp = parseInt(localStorage.getItem("cv_xp")) || 0;
+    xp += lab.xp;
+
+    localStorage.setItem("cv_xp", xp);
+
+    alert(`Lab Completed 🚀 +${lab.xp} XP`);
+
+}
+
+// INIT
+loadLabs();
+
+{ title: "Purple Team Simulation", type: "purple", xp: 60 },
+{ title: "Malware Reverse Lab", type: "malware", xp: 70 },
+{ title: "Forensics Investigation Lab", type: "forensics", xp: 60 },
+{ title: "Phishing Attack Lab", type: "social", xp: 50 },
+
+
+
+
+
+// ⚡ XSS LAB
+function runXSS() {
+    let input = document.getElementById("xssInput").value;
+    let result = document.getElementById("xssResult");
+
+    if (input.includes("<script>")) {
+        result.innerHTML = "✅ XSS Successful! XP +60";
+        result.style.color = "yellow";
+
+        let xp = parseInt(localStorage.getItem("cv_xp")) || 0;
+        xp += 60;
+        localStorage.setItem("cv_xp", xp);
+    } else {
+        result.innerHTML = "❌ No injection detected";
+        result.style.color = "red";
+    }
+}
+
+// 🌐 PORT SCAN
+function scanPorts() {
+    let result = document.getElementById("scanResult");
+
+    let openPorts = [22, 80, 443];
+
+    result.innerHTML = "Scanning...<br>";
+
+    setTimeout(() => {
+        result.innerHTML += "✅ Open Ports Found: " + openPorts.join(", ") + "<br>XP +40";
+        result.style.color = "lightblue";
+
+        let xp = parseInt(localStorage.getItem("cv_xp")) || 0;
+        xp += 40;
+        localStorage.setItem("cv_xp", xp);
+    }, 1000);
+}
+
+// 🎣 PHISHING
+function checkPhishing() {
+    let value = document.getElementById("phishSelect").value;
+    let result = document.getElementById("phishResult");
+
+    if (value === "phish") {
+        result.innerHTML = "✅ Correct! This is a phishing attempt. XP +50";
+        result.style.color = "lightgreen";
+
+        let xp = parseInt(localStorage.getItem("cv_xp")) || 0;
+        xp += 50;
+        localStorage.setItem("cv_xp", xp);
+    } else {
+        result.innerHTML = "❌ Wrong! This was suspicious.";
+        result.style.color = "red";
+    }
+}
+
+// 💥 BRUTE FORCE
+function runBruteForce() {
+    let input = document.getElementById("bruteInput").value;
+    let result = document.getElementById("bruteResult");
+
+    if (input === "1234") {
+        result.innerHTML = "✅ Password Cracked! XP +70";
+        result.style.color = "lightgreen";
+
+        let xp = parseInt(localStorage.getItem("cv_xp")) || 0;
+        xp += 70;
+        localStorage.setItem("cv_xp", xp);
+    } else {
+        result.innerHTML = "❌ Incorrect attempt";
+        result.style.color = "red";
+    }
+}
+</script>
+
+</body>
+</html>
