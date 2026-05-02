@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberVerse Admin</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body { font-family: 'Inter', sans-serif; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+.glow { box-shadow: 0 0 15px rgba(0,255,249,0.2); }
+
+.card:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+    box-shadow: 0 0 20px rgba(0,255,249,0.3);
+}
+
+/* ACTIVE NAV */
+.nav-btn.active {
+    color: #22d3ee;
+    border-left: 3px solid #22d3ee;
+    padding-left: 8px;
+}
+</style>
+</head>
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
+
+if(!user || user.role !== "admin"){
+    alert("Access Denied");
+    window.location.href = "../client/login.html";
+}
+</script>
+
+<body class="bg-[#0a0a0a] text-gray-200">
+
+<div class="flex h-screen">
+
+<!-- SIDEBAR -->
+<div class="w-64 bg-[#111] border-r border-gray-800 p-6">
+
+<h1 class="mono text-xl text-cyan-400 mb-8">CyberVerse Admin</h1>
+
+<nav class="space-y-4 mono text-sm">
+<button onclick="showAdminSection('dashboard')" class="nav-btn active block text-left w-full">Dashboard</button>
+
+<button onclick="showAdminSection('users')" class="nav-btn block text-gray-400 hover:text-white w-full text-left">Users</button>
+
+<button onclick="showAdminSection('labs')" class="nav-btn block text-gray-400 hover:text-white w-full text-left">Labs</button>
+
+<button onclick="showAdminSection('progress')" class="nav-btn block text-gray-400 hover:text-white w-full text-left">Progress</button>
+
+<a href="../index.html" class="block text-gray-400 hover:text-white">Back to Site</a>
+</nav>
+
+</div>
+
+<!-- MAIN -->
+<div class="flex-1 p-6 overflow-y-auto">
+
+<!-- HEADER -->
+<div class="flex justify-between items-center mb-10">
+<h2 class="mono text-3xl">Admin Dashboard</h2>
+<button onclick="logout()" class="bg-red-500 px-4 py-2 rounded">Logout</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="admin-section">
+
+<div class="grid md:grid-cols-4 gap-6 mb-10">
+
+<div class="card bg-[#111] p-6 rounded border border-gray-800 glow">
+<h3 class="text-gray-400 text-sm">Total Users</h3>
+<p id="totalUsers" class="text-3xl mono text-cyan-400">0</p>
+</div>
+
+<div class="card bg-[#111] p-6 rounded border border-gray-800 glow">
+<h3 class="text-gray-400 text-sm">Total XP</h3>
+<p id="totalXP" class="text-3xl mono text-cyan-400">0</p>
+</div>
+
+<div class="card bg-[#111] p-6 rounded border border-gray-800 glow">
+<h3 class="text-gray-400 text-sm">Active Labs</h3>
+<p class="text-3xl mono text-cyan-400">12</p>
+</div>
+
+<div class="card bg-[#111] p-6 rounded border border-gray-800 glow">
+<h3 class="text-gray-400 text-sm">Daily Activity</h3>
+<p class="text-3xl mono text-cyan-400">87%</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- USERS -->
+<div id="users" class="admin-section hidden bg-[#111] p-6 rounded border border-gray-800 mb-10">
+
+<h3 class="mono text-xl mb-4">User Management</h3>
+
+<table class="w-full text-left text-sm">
+<thead>
+<tr class="text-gray-400 border-b border-gray-700">
+<th class="py-2">User</th>
+<th>XP</th>
+<th>Level</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody id="userTable"></tbody>
+
+</table>
+
+</div>
+
+<!-- LABS -->
+<div id="labs" class="admin-section hidden bg-[#111] p-6 rounded border border-gray-800 mb-10">
+
+<h3 class="mono text-xl mb-4">Labs Management</h3>
+
+<p class="text-gray-400 mb-4">Control cybersecurity labs and challenges.</p>
+
+<div class="space-y-3">
+<div class="flex justify-between bg-[#0a0a0a] p-3 rounded">
+<span>SQL Injection Lab</span>
+<button class="bg-cyan-400 text-black px-2 py-1 rounded text-xs">Edit</button>
+</div>
+
+<div class="flex justify-between bg-[#0a0a0a] p-3 rounded">
+<span>XSS Lab</span>
+<button class="bg-cyan-400 text-black px-2 py-1 rounded text-xs">Edit</button>
+</div>
+</div>
+
+</div>
+
+<!-- PROGRESS -->
+<div id="progress" class="admin-section hidden bg-[#111] p-6 rounded border border-gray-800">
+
+<h3 class="mono text-xl mb-4">Platform Activity</h3>
+
+<p class="text-gray-400 text-sm">Monitor engagement and learning trends.</p>
+
+<div class="mt-6 space-y-4">
+
+<div>
+<p class="text-sm">Learning Completion</p>
+<div class="w-full bg-gray-800 h-2 rounded">
+<div class="bg-cyan-400 h-2 rounded" style="width:70%"></div>
+</div>
+</div>
+
+<div>
+<p class="text-sm">Tool Usage</p>
+<div class="w-full bg-gray-800 h-2 rounded">
+<div class="bg-cyan-400 h-2 rounded" style="width:55%"></div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+// NAVIGATION SWITCH
+function showAdminSection(sectionId) {
+    document.querySelectorAll('.admin-section').forEach(sec => {
+        sec.classList.add('hidden');
+    });
+
+    document.getElementById(sectionId).classList.remove('hidden');
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    event.target.classList.add('active');
+}
+
+// SAMPLE USERS
+let users = JSON.parse(localStorage.getItem("cv_users")) || [
+    { name: "Kabir", xp: 1200 },
+    { name: "Alex", xp: 800 }
+];
+
+// LEVEL SYSTEM
+function getLevel(xp) {
+    return Math.floor(xp / 500) + 1;
+}
+
+// RENDER USERS
+function renderUsers() {
+    let table = document.getElementById("userTable");
+    table.innerHTML = "";
+
+    let totalXP = 0;
+
+    users.forEach((user, index) => {
+        totalXP += user.xp;
+
+        table.innerHTML += `
+        <tr class="border-b border-gray-800">
+            <td class="py-3">${user.name}</td>
+            <td>${user.xp}</td>
+            <td>${getLevel(user.xp)}</td>
+            <td class="space-x-2">
+                <button onclick="addXP(${index})" class="bg-cyan-400 text-black px-2 py-1 rounded text-xs">+XP</button>
+                <button onclick="resetUser(${index})" class="bg-red-500 px-2 py-1 rounded text-xs">Reset</button>
+            </td>
+        </tr>
+        `;
+    });
+
+    document.getElementById("totalUsers").innerText = users.length;
+    document.getElementById("totalXP").innerText = totalXP;
+
+    localStorage.setItem("cv_users", JSON.stringify(users));
+}
+
+// ADD XP
+function addXP(index) {
+    users[index].xp += 100;
+    renderUsers();
+}
+
+// RESET USER
+function resetUser(index) {
+    users[index].xp = 0;
+    renderUsers();
+}
+
+// LOGOUT
+function logout() {
+    alert("Logged out!");
+    window.location.href = "../login.html";
+}
+
+// INIT
+renderUsers();
+
+
+if (localStorage.getItem("isAdmin") !== "true") {
+    document.body.innerHTML = "<h1 style='color:red;text-align:center;margin-top:20%'>Access Denied 🚫</h1>";
+}
+
+
+</script>
+
+</body>
+</html>

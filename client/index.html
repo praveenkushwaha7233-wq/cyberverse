@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberVerse</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body { font-family: 'Inter', sans-serif; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+/* Glow */
+.glow { box-shadow: 0 0 15px rgba(0,255,249,0.15); }
+
+/* Hover Effects */
+.hover-glow:hover {
+  box-shadow: 0 0 20px cyan;
+  transform: translateY(-4px);
+  transition: 0.3s;
+}
+
+/* Buttons */
+.btn {
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px cyan;
+}
+
+/* Grid background */
+.grid-bg {
+background-image: radial-gradient(circle, rgba(0,255,249,0.15) 1px, transparent 1px);
+background-size: 22px 22px;
+}
+
+/* Fade Animation */
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(20px);}
+  to {opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body class="bg-[#0a0a0a] text-gray-200">
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full h-[70px] bg-[#111] border-b border-gray-800 z-50">
+<div class="max-w-7xl mx-auto flex items-center justify-between h-full px-6">
+
+<div class="flex items-center gap-2 cursor-pointer" onclick="goHome()">
+<div class="w-7 h-7 border-2 border-cyan-400 rotate-45"></div>
+<span class="mono text-xl text-cyan-400 font-bold">CyberVerse</span>
+</div>
+
+<span onclick="window.location.href='index.html'" 
+class="cursor-pointer text-cyan-400 border-b-2 border-cyan-400 pb-1">
+Dashboard
+</span>
+
+<span onclick="window.location.href='labs.html'" 
+class="cursor-pointer text-gray-400 hover:text-white">
+Learning Paths
+</span>
+
+<span onclick="window.location.href='tools.html'" 
+class="cursor-pointer text-gray-400 hover:text-white">
+Toolbox
+</span>
+
+<span onclick="window.location.href='community.html'" 
+class="cursor-pointer text-gray-400 hover:text-white">
+Community
+</span>
+
+<!-- PROFILE ICON -->
+<div onclick="openProfile()" class="cursor-pointer w-9 h-9 border border-cyan-400 rounded-full flex items-center justify-center hover:shadow-[0_0_15px_cyan]">
+<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+d="M5.121 17.804A9 9 0 1118.88 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+</svg>
+</div>
+
+</div>
+</nav>
+
+<main class="pt-[80px]">
+
+<!-- HERO -->
+<section class="relative px-6 py-20 grid-bg fade-in">
+<div class="max-w-7xl mx-auto">
+
+<h1 class="mono text-5xl font-bold mb-6 leading-tight">
+Master the Art of <span class="text-cyan-400">Defense</span>
+</h1>
+
+<p class="text-gray-400 text-lg max-w-2xl mb-8">
+Build real-world cybersecurity skills through interactive labs and tools.
+</p>
+
+<div class="flex gap-4 mb-12">
+<button onclick="startLearning()" class="btn bg-cyan-400 text-black px-6 py-3 mono font-semibold rounded">Start Learning</button>
+<button onclick="exploreTools()" class="btn border border-cyan-400 px-6 py-3 mono text-cyan-400 rounded">Explore Tools</button>
+<button onclick="goAdmin()" 
+class="btn border border-cyan-400 px-6 py-3 mono text-cyan-400 rounded">
+Admin
+</button>
+
+</div>
+
+<!-- STATS -->
+<div class="grid md:grid-cols-3 gap-6 max-w-3xl">
+
+<div class="bg-[#111] p-6 rounded-lg border border-gray-800 glow hover-glow">
+<h2 class="text-3xl mono text-cyan-400">24</h2>
+<p class="text-gray-400 text-sm">Learning Paths</p>
+</div>
+
+<div class="bg-[#111] p-6 rounded-lg border border-gray-800 glow hover-glow">
+<h2 class="text-3xl mono text-cyan-400">156</h2>
+<p class="text-gray-400 text-sm">Security Tools</p>
+</div>
+
+<div class="bg-[#111] p-6 rounded-lg border border-gray-800 glow hover-glow">
+<h2 class="text-3xl mono text-cyan-400">8.5K</h2>
+<p class="text-gray-400 text-sm">Active Defenders</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- LEARNING PATHS -->
+<section id="learning" class="px-6 py-20">
+<div class="max-w-7xl mx-auto">
+
+<div class="flex justify-between mb-10">
+<div>
+<h2 class="mono text-3xl">Your Learning Paths</h2>
+<p class="text-gray-400">Continue your journey</p>
+</div>
+<span onclick="alert('Viewing all learning paths')" class="text-cyan-400 mono text-sm cursor-pointer">View All →</span>
+</div>
+
+<div class="grid md:grid-cols-3 gap-6">
+
+<div class="bg-[#111] p-6 rounded-lg border border-cyan-400 glow hover-glow">
+<span class="text-xs bg-green-400 text-black px-3 py-1 rounded-full">IN PROGRESS</span>
+
+<h3 class="mono text-xl mt-4 mb-2">Network Security</h3>
+<p class="text-gray-400 text-sm mb-4">Firewalls, IDS, packet analysis</p>
+
+<div class="flex justify-between text-xs mb-1">
+<span>Progress</span>
+<span class="text-cyan-400">68%</span>
+</div>
+
+<div class="w-full bg-gray-800 h-2 rounded-full">
+<div class="bg-cyan-400 h-2 rounded-full" style="width:68%"></div>
+</div>
+</div>
+
+<div class="bg-[#111] p-6 rounded-lg border border-gray-800 hover-glow">
+<h3 class="mono text-xl mb-2">Web Security</h3>
+<p class="text-gray-400 text-sm mb-4">SQLi, XSS, OWASP</p>
+</div>
+
+<div class="bg-[#111] p-6 rounded-lg border border-gray-800 hover-glow">
+<h3 class="mono text-xl mb-2">Forensics</h3>
+<p class="text-gray-400 text-sm mb-4">Incident response & malware</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- TOOLBOX -->
+<section id="tools" class="px-6 py-20 bg-[#0a0a0a]">
+<div class="max-w-7xl mx-auto">
+
+<h2 class="mono text-3xl mb-10">Security Toolbox</h2>
+
+<div class="grid md:grid-cols-4 gap-6">
+
+<div class="bg-[#111] p-6 rounded-lg border border-gray-800 relative hover-glow">
+<h3 class="mono mb-2">Port Scanner</h3>
+<p class="text-gray-400 text-sm">Scan open ports</p>
+<button onclick="launchTool('Port Scanner')" class="btn absolute bottom-5 right-5 bg-cyan-400 text-black px-3 py-1 text-xs rounded-full">Launch</button>
+</div>
+
+<div class="bg-[#111] p-6 rounded-lg border border-gray-800 relative hover-glow">
+<h3 class="mono mb-2">Hash Cracker</h3>
+<p class="text-gray-400 text-sm">Decrypt hashes</p>
+<button onclick="launchTool('Hash Cracker')" class="btn absolute bottom-5 right-5 bg-cyan-400 text-black px-3 py-1 text-xs rounded-full">Launch</button>
+</div>
+
+<div class="bg-[#111] p-6 rounded-lg border border-gray-800 relative hover-glow">
+<h3 class="mono mb-2">Packet Analyzer</h3>
+<p class="text-gray-400 text-sm">Analyze traffic</p>
+<button onclick="launchTool('Packet Analyzer')" class="btn absolute bottom-5 right-5 bg-cyan-400 text-black px-3 py-1 text-xs rounded-full">Launch</button>
+</div>
+
+<div class="bg-[#111] p-6 rounded-lg border border-gray-800 relative hover-glow">
+<h3 class="mono mb-2">Vulnerability Scanner</h3>
+<p class="text-gray-400 text-sm">Find weaknesses</p>
+<button onclick="launchTool('Vulnerability Scanner')" class="btn absolute bottom-5 right-5 bg-cyan-400 text-black px-3 py-1 text-xs rounded-full">Launch</button>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="px-6 py-12 bg-[#111] border-t border-gray-800">
+<div class="max-w-7xl mx-auto flex justify-between flex-wrap gap-6">
+
+<div>
+<h3 class="mono text-cyan-400 text-lg mb-2">CyberVerse</h3>
+<p class="text-gray-400 text-sm">Cybersecurity training platform</p>
+</div>
+
+<div class="text-gray-400 text-sm">
+<p>Learning Paths</p>
+<p>Tools</p>
+<p>CTF</p>
+</div>
+
+<div class="text-gray-400 text-sm">
+<p>Community</p>
+<p>Forums</p>
+<p>Events</p>
+</div>
+
+</div>
+</footer>
+
+</main>
+
+<!-- JAVASCRIPT -->
+<script>
+function startLearning(){
+  document.getElementById('learning').scrollIntoView({behavior:'smooth'});
+}
+
+function exploreTools(){
+  document.getElementById('tools').scrollIntoView({behavior:'smooth'});
+}
+
+function launchTool(tool){
+  alert("Launching " + tool);
+}
+
+function goHome(){
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function openProfile(){
+  alert("Opening Profile...");
+}
+
+function showSection(section){
+  document.getElementById(section).scrollIntoView({behavior:'smooth'});
+}
+</script>
+
+<script>
+
+// XP SYSTEM
+function addXP(amount){
+    let xp = localStorage.getItem("xp") || 0;
+    xp = parseInt(xp) + amount;
+    localStorage.setItem("xp", xp);
+}
+
+// Navigate to Labs + XP + TOAST
+function startLearning() {
+
+    addXP(50);  
+
+    // 🔥 TOAST (XP popup)
+    const toast = document.createElement("div");
+    toast.innerText = "+50 XP 🚀";
+    toast.className = "fixed top-5 right-5 bg-cyan-400 text-black px-4 py-2 rounded shadow-lg z-50";
+    document.body.appendChild(toast);
+
+    setTimeout(()=> toast.remove(),2000);
+
+    // animation + redirect
+    document.body.style.opacity = "0.7";
+
+    setTimeout(() => {
+        window.location.href = "labs.html";
+    }, 300);
+}
+
+// Tools button
+function exploreTools() {
+    document.body.style.opacity = "0.7";
+
+    setTimeout(() => {
+        window.location.href = "tools.html";
+    }, 300);
+}
+
+function goAdmin(){
+    window.location.href = "../admin/admin.html";
+}
+
+</script>
+
+</body>
+</html>
