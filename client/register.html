@@ -27,17 +27,17 @@
 
         <div>
             <label class="text-sm text-[#8a8a8a]">Username</label>
-            <input name="username" required
+           <input id="username" required
                 class="w-full mt-1 p-2 bg-[#0a0a0a] border border-[#2d2d2d] rounded text-white">
         </div>
 
         <div>
             <label class="text-sm text-[#8a8a8a]">Password</label>
-            <input type="password" name="password" required
+            <input id="password" type="password" required
                 class="w-full mt-1 p-2 bg-[#0a0a0a] border border-[#2d2d2d] rounded text-white">
         </div>
 
-    <button onclick="registerUser()" 
+  <button type="submit"
 class="w-full border border-cyan-400 py-2 rounded text-cyan-400 hover:bg-cyan-400 hover:text-black transition">
 Register
 </button>
@@ -52,27 +52,54 @@ Register
 </div>
 
 <script>
-async function registerUser(e) {
-    e.preventDefault();
 
-    const username = document.querySelector("input[name='username']").value;
-    const password = document.querySelector("input[name='password']").value;
+async function registerUser(event) {
 
-    const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-    });
+    event.preventDefault();
 
-    const data = await res.json();
+    const username = document.getElementById("username").value.trim();
 
-    if (res.ok) {
-        alert("Registered Successfully 🎉");
-        window.location.href = "/login.html";
-    } else {
-        alert(data.msg);
+    const password = document.getElementById("password").value.trim();
+
+    if (!username || !password) {
+        alert("Enter all fields");
+        return;
+    }
+
+    try {
+
+        const res = await fetch("/api/auth/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username,
+                password
+            })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+
+            alert("Registration Successful 🚀");
+
+            window.location.href = "/login.html";
+
+        } else {
+
+            alert(data.msg);
+        }
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert("Server Error ❌");
     }
 }
+
 </script>
 
 </body>
